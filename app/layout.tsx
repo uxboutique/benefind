@@ -28,7 +28,11 @@ const geist = Geist({
   display: "swap",
 });
 
+// Test deploys (GitHub Pages) must never be indexed: NEXT_PUBLIC_NOINDEX=1 → <meta name="robots" content="noindex, nofollow">.
+const noIndex = process.env.NEXT_PUBLIC_NOINDEX === "1";
+
 export const metadata: Metadata = {
+  ...(noIndex && { robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } } }),
   title: "Gruppo Benefind — Servizi IT e tecnologie per le aziende",
   description:
     "Benefind - Digital Innovation Group: servizi IT, tecnologie abilitanti e soluzioni su misura per la trasformazione digitale delle aziende.",

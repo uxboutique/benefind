@@ -16,6 +16,8 @@ npm run lint && npm run typecheck
 
 Every push to `main` runs `.github/workflows/pages.yml`: lint, typecheck, then a static export
 (`STATIC_EXPORT=1`, served under `/<repo-name>/`) published to GitHub Pages.
+The test site is built with `NEXT_PUBLIC_NOINDEX=1` → `<meta name="robots" content="noindex, nofollow">`
+on every page (the build fails if the tag is missing). Don't set it for production.
 
 Local equivalent:
 
