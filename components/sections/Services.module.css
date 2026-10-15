@@ -1,0 +1,158 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  margin-top: var(--space-section);
+  overflow: clip; /* not hidden: a scroll container would capture the view timelines inside */
+  background: var(--c-cocoa-900);
+  color: var(--c-white);
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+/* The 26px backdrop blur of the Figma veil is applied to the image itself (same visual,
+   one static filter instead of a full-section backdrop-filter). Scaled slightly so blurred
+   edges never show. */
+.bgScale {
+  position: absolute;
+  inset: -40px;
+}
+
+.bgImg {
+  object-fit: cover;
+  filter: blur(var(--blur-veil));
+}
+
+.bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* 20% black overlay + 41% black veil = 1 − 0.8 × 0.59 ≈ 0.528 */
+  background: rgba(0, 0, 0, 0.528);
+}
+
+/* Figma: 96 top, stats panel 102 below CTA, 89 bottom */
+.inner {
+  padding-block: 96px 89px;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 527px);
+  gap: 32px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+  max-width: 473px;
+}
+
+.text {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+}
+
+.statsWrap {
+  margin-top: 102px;
+}
+
+/* Figma: 1113 × 123 glass panel, centred; columns at 32 / 433 / 835 with dividers 16px before */
+.stats {
+  display: grid;
+  grid-template-columns: 385fr 401fr 263fr;
+  width: min(1113px, 100%);
+  margin-inline: auto;
+  padding: 20px 32px 19px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: var(--r-sm);
+  background: var(--glass-dark);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+}
+
+.stat {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 2px;
+}
+
+.stat + .stat {
+  padding-left: 16px;
+}
+
+.stat + .stat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 1px;
+  height: 65px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.statValue {
+  font-size: var(--fs-stat);
+  font-weight: 600;
+  line-height: 56.7px;
+  letter-spacing: -0.54px;
+}
+
+.statLabel {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 24px;
+  opacity: 0.7;
+}
+
+@media (max-width: 1023px) {
+  .inner {
+    padding-block: 72px;
+  }
+
+  .cols {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .statsWrap {
+    margin-top: 56px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 20px 24px;
+  }
+}
+
+@media (max-width: 599px) {
+  .inner {
+    padding-block: 56px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    padding: 8px 20px;
+  }
+
+  .stat {
+    padding-block: 14px;
+  }
+
+  .stat + .stat {
+    padding-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .stat + .stat::before {
+    display: none;
+  }
+}

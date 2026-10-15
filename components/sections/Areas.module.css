@@ -1,0 +1,68 @@
+/* Figma: heading at +80 from rule, cards at +24 from heading, rule at +80 below cards (tallest 389) */
+.section {
+  padding-top: var(--space-section);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.visual {
+  position: relative;
+  aspect-ratio: 305 / 265;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+
+.visualInner {
+  position: absolute;
+  inset: 0;
+  transition: transform 600ms var(--ease-out);
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--c-navy-900);
+}
+
+.text {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--c-ink-600);
+}
+
+.rule {
+  margin-top: var(--space-section);
+  border: 0;
+  border-top: 1px solid var(--line-on-light);
+}
+
+@media (hover: hover) {
+  .card:hover .visualInner {
+    transform: scale(1.03);
+  }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 40px;
+  }
+}
+
+@media (max-width: 599px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

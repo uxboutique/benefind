@@ -1,0 +1,15 @@
+{
+  "run": "mobile-devtools",
+  "scores": {
+    "performance": 96,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "first-contentful-paint": "1.7 s",
+  "largest-contentful-paint": "2.0 s",
+  "total-blocking-time": "170 ms",
+  "cumulative-layout-shift": "0.016",
+  "speed-index": "2.0 s",
+  "totalBytes": "Total size was 328 KiB"
+}

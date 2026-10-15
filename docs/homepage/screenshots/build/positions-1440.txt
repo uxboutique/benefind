@@ -1,0 +1,21 @@
+header bottom    figma    81  build    81  Δ 0
+hero h1          figma   515  build   516  Δ 1
+logos rule       figma   951  build   951  Δ 0
+banner card      figma  1031  build  1032  Δ 1
+areas eyebrow    figma  1631  build  1632  Δ 1
+areas rule       figma  2217  build  2219  Δ 2
+markets eyebrow  figma  2301  build  2300  Δ -1
+markets slide    figma  2503  build  2506  Δ 3
+services         figma  3106  build  3106  Δ 0
+services stats   figma  3569  build  3569  Δ 0
+case eyebrow     figma  3861  build  3862  Δ 1
+case featured    figma  4058  build  4059  Δ 1
+case grid        figma  4534  build  4535  Δ 1
+careers          figma  4936  build  4938  Δ 2
+careers card     figma  5237  build  5240  Δ 3
+tech eyebrow     figma  5917  build  5919  Δ 2
+tech cards       figma  6100  build  6103  Δ 3
+tech controls    figma  6650  build  6653  Δ 3
+contact h2       figma  6831  build  6834  Δ 3
+footer           figma  7231  build  7234  Δ 3
+page end         figma  7794  build  7798  Δ 4

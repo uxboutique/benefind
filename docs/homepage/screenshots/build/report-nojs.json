@@ -1,0 +1,18 @@
+[
+  {
+    "width": 1440,
+    "height": 7798,
+    "horizontalOverflow": 0,
+    "console": [
+      "requestfailed: http://localhost:3000/_next/static/chunks/1ckvzn7sfprko.js"
+    ]
+  },
+  {
+    "width": 390,
+    "height": 12037,
+    "horizontalOverflow": 0,
+    "console": [
+      "requestfailed: http://localhost:3000/_next/static/chunks/1ckvzn7sfprko.js"
+    ]
+  }
+]

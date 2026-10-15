@@ -1,0 +1,144 @@
+/* Figma: title +80 after services, featured +44, grid +48 */
+.section {
+  padding-top: var(--space-section);
+}
+
+.featured {
+  display: grid;
+  grid-template-columns: minmax(0, 760fr) minmax(0, 480fr);
+  align-items: center;
+  gap: 40px;
+  margin-top: 44px;
+}
+
+.featuredMedia {
+  position: relative;
+  aspect-ratio: 760 / 428;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+
+.mediaInner {
+  position: absolute;
+  inset: 0;
+  transition: transform 600ms var(--ease-out);
+}
+
+/* Crop box copied from Figma for each photo */
+.imageBox {
+  position: absolute;
+}
+
+.img {
+  object-fit: cover;
+}
+
+.featuredText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.tag,
+.tagSm {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-indigo-600);
+}
+
+.tagSm {
+  font-size: 11px;
+}
+
+.featuredTitle {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-h3);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--c-navy-900);
+}
+
+.featuredBody {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-ink-600);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.cardMedia {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 296 / 200;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--c-navy-900);
+}
+
+.more {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: normal;
+  color: var(--c-indigo-600);
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .card:hover .mediaInner {
+    transform: scale(1.03);
+  }
+
+  .card:hover .arrow {
+    transform: translateX(3px);
+  }
+}
+
+@media (max-width: 1023px) {
+  .featured {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 40px;
+  }
+}
+
+@media (max-width: 599px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Figma: title block 600 wide (wraps to 2 lines) */
+.heading {
+  max-width: 600px;
+}

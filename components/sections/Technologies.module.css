@@ -1,0 +1,152 @@
+/* Figma: header +80 after careers, carousel +30, arrows +30 */
+.section {
+  padding-top: var(--space-section);
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 600px) minmax(0, 600px);
+  justify-content: space-between;
+  align-items: start;
+  gap: 32px;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--c-ink-600);
+}
+
+.slider {
+  container-type: inline-size;
+  margin-top: 30px;
+}
+
+.track {
+  display: flex;
+  gap: 24px;
+  padding-inline: max(var(--gutter), (100cqw - var(--container)) / 2);
+  scroll-padding-inline: max(var(--gutter), (100cqw - var(--container)) / 2);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.track:focus-visible {
+  outline-offset: -3px;
+}
+
+.card {
+  position: relative;
+  isolation: isolate;
+  flex: none;
+  display: flex;
+  width: min(628px, 100cqw - 2 * var(--gutter) - 24px);
+  height: 520px;
+  padding: 28px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transition: transform 600ms var(--ease-out);
+}
+
+.img {
+  object-fit: cover;
+}
+
+/* Panels sit 28px from the bottom: dark ones on the left, the light one on the right (Figma). */
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  align-self: flex-end;
+  width: 400px;
+  max-width: 100%;
+  padding: 28px;
+  border-radius: var(--r-md);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+}
+
+.panelDark {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: var(--glass-dark);
+  color: var(--c-white);
+}
+
+.panelLight {
+  margin-left: auto;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: var(--glass-light);
+  color: var(--c-ink-900);
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-lilac-100);
+}
+
+.panelLight .tag {
+  color: var(--c-indigo-600);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-h4);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+}
+
+.panelLight .title {
+  color: var(--c-navy-900);
+}
+
+.body {
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.controls {
+  margin-top: 30px;
+}
+
+@media (hover: hover) {
+  .card:hover .media {
+    transform: scale(1.03);
+  }
+}
+
+@media (max-width: 1023px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 599px) {
+  .card {
+    height: 480px;
+    padding: 16px;
+  }
+
+  .panel {
+    padding: 22px 20px;
+  }
+}

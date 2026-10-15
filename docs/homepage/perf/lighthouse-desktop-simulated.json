@@ -1,0 +1,15 @@
+{
+  "run": "desktop-simulated",
+  "scores": {
+    "performance": 100,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "first-contentful-paint": "0.3 s",
+  "largest-contentful-paint": "0.7 s",
+  "total-blocking-time": "0 ms",
+  "cumulative-layout-shift": "0",
+  "speed-index": "0.5 s",
+  "totalBytes": "Total size was 330 KiB"
+}

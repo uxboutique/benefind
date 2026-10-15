@@ -1,0 +1,35 @@
+/* Figma: arrows end at 6695, contact frame at 6751 with 80px padding → 136px above the headline */
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding-block: 136px 80px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-display-xl);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--c-navy-900);
+}
+
+.text {
+  font-size: 18px;
+  line-height: normal;
+  color: var(--c-ink-600);
+}
+
+@media (max-width: 1023px) {
+  .section {
+    padding-block: 96px 72px;
+  }
+}
+
+@media (max-width: 599px) {
+  .section {
+    padding-block: 72px 56px;
+  }
+}

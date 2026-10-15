@@ -1,0 +1,139 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  margin-top: var(--space-section);
+  overflow: clip; /* not hidden: a scroll container would capture the view timelines inside */
+  background: var(--c-ink-900);
+  color: var(--c-white);
+}
+
+.visual {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+/* Figma "Velatura" (same gradient as hero, ~917px tall) */
+.veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 6, 63, 0) 0%,
+    rgba(7, 6, 63, 0) 30%,
+    rgba(7, 6, 63, 0.3) 44.528%,
+    rgba(7, 6, 63, 0.85) 100%
+  );
+}
+
+/* Figma: header at 80, card at 301 (69 below the button), 80 bottom */
+.inner {
+  padding-block: 80px;
+}
+
+.heading {
+  max-width: 900px;
+}
+
+.cardWrap {
+  margin-top: 69px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: var(--c-mist-50);
+  color: var(--c-ink-900);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+  padding: 48px;
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-ink-600);
+}
+
+.storyTitle {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-display-l);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: var(--c-navy-900);
+}
+
+.storyLine {
+  display: block;
+}
+
+.media {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 48px;
+}
+
+.quote {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-ink-900);
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 544 / 380;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: var(--c-lilac-200);
+}
+
+.photoInner {
+  position: absolute;
+  inset: 0;
+}
+
+.img {
+  object-fit: cover;
+}
+
+@media (max-width: 1023px) {
+  .inner {
+    padding-block: 64px;
+  }
+
+  .cardWrap {
+    margin-top: 48px;
+  }
+
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .media {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 599px) {
+  .text,
+  .media {
+    padding: 28px 20px;
+  }
+
+  .media {
+    padding-top: 0;
+  }
+}

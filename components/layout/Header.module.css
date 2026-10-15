@@ -1,0 +1,222 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-lilac-100);
+  transition: transform 500ms var(--ease-out);
+}
+
+/* M2 */
+.isHidden {
+  transform: translateY(-100%);
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: calc(var(--header-h) - 1px);
+}
+
+.logo {
+  display: block;
+  flex: none;
+}
+
+.logo img {
+  width: 155px;
+  height: auto;
+}
+
+/* Figma: nav starts at x488 (24px left of centre) — implemented centred. */
+.nav {
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+}
+
+.nav ul {
+  display: flex;
+  gap: 28px;
+}
+
+.navLink {
+  position: relative;
+  display: block;
+  padding-block: 6px;
+  font-size: 15px;
+  line-height: normal;
+  color: var(--c-navy-900);
+  white-space: nowrap;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-ui) var(--ease-io);
+}
+
+@media (hover: hover) {
+  .navLink:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+.utility {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.iconBtn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin: -6px; /* 20–22px icons with a larger hit area, without changing the Figma spacing */
+  border-radius: var(--r-pill);
+}
+
+/* ---- Menu panel ---- */
+.panel {
+  position: absolute;
+  inset: 100% 0 auto;
+  height: calc(100svh - var(--header-h));
+  overflow-y: auto;
+  background: var(--c-white);
+  border-top: 1px solid var(--c-lilac-100);
+}
+
+.panelInner {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 48px;
+  padding-block: 56px;
+}
+
+.panelPrimary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.panelPrimary a {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-h3);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--c-navy-900);
+}
+
+.panelSecondary ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.panelSecondary a {
+  font-size: 15px;
+  color: var(--c-ink-600);
+}
+
+.panelHead {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-indigo-600);
+}
+
+@media (hover: hover) {
+  .panelPrimary a:hover,
+  .panelSecondary a:hover {
+    color: var(--c-indigo-600);
+  }
+}
+
+/* M13: closed → open toggled by JS one frame after `hidden` is removed; links stagger 40ms. */
+.panel {
+  opacity: 0;
+  transform: translateY(-16px);
+  transition:
+    opacity 400ms var(--ease-out),
+    transform 400ms var(--ease-out);
+}
+
+.isOpen {
+  opacity: 1;
+  transform: none;
+}
+
+.panel li {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 400ms var(--ease-out),
+    transform 400ms var(--ease-out);
+}
+
+.isOpen li {
+  opacity: 1;
+  transform: none;
+}
+
+.isOpen .panelPrimary li:nth-child(2) { transition-delay: 40ms; }
+.isOpen .panelPrimary li:nth-child(3) { transition-delay: 80ms; }
+.isOpen .panelPrimary li:nth-child(4) { transition-delay: 120ms; }
+.isOpen .panelPrimary li:nth-child(5) { transition-delay: 160ms; }
+.isOpen .panelSecondary li { transition-delay: 200ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .header {
+    transition: none;
+  }
+
+  .panel,
+  .panel li {
+    transform: none;
+    transition: opacity 150ms linear;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1023px) {
+  .nav {
+    display: none;
+  }
+
+  .logo img {
+    width: 132px;
+  }
+}
+
+@media (max-width: 767px) {
+  .panelInner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-block: 32px;
+  }
+
+  .logo img {
+    width: 120px;
+  }
+}
+
+@media (max-width: 389px) {
+  .cta {
+    display: none;
+  }
+}

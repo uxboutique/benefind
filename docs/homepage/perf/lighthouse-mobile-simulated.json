@@ -1,0 +1,15 @@
+{
+  "run": "mobile-simulated",
+  "scores": {
+    "performance": 98,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "first-contentful-paint": "1.1 s",
+  "largest-contentful-paint": "2.5 s",
+  "total-blocking-time": "60 ms",
+  "cumulative-layout-shift": "0",
+  "speed-index": "1.4 s",
+  "totalBytes": "Total size was 328 KiB"
+}

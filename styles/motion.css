@@ -1,0 +1,222 @@
+/*
+ * Motion layer — see docs/homepage/03-motion-matrix.md (M-ids) and 04-decision.md.
+ * Rules:
+ *  - "hidden" initial states exist only under html.js (added before paint by the inline boot script);
+ *    server HTML without JS is fully visible. html.motion-fallback (boot timeout) forces visibility.
+ *  - Only transform and opacity are animated.
+ *  - prefers-reduced-motion: movement removed, short fades only (bottom of file).
+ */
+
+/* ---------- M5 block reveal (one-shot, IO adds .is-in) ---------- */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-distance), 0);
+  transition:
+    opacity var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+
+.js [data-reveal="fade"] {
+  transform: none;
+}
+
+.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- M3 headline line reveal ---------- */
+.split-line {
+  display: block;
+  overflow: clip;
+  overflow-clip-margin: 0.2em;
+  /* room for descenders inside the clip, without changing line geometry */
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.split-line__inner {
+  display: block;
+}
+
+/* Until lines are measured, keep the heading invisible (only when JS runs). */
+.js [data-split]:not([data-split-ready]) {
+  opacity: 0;
+}
+
+.js [data-split] .split-line__inner {
+  opacity: 0;
+  transform: translate3d(0, 105%, 0);
+  transition:
+    opacity var(--dur-lines) var(--ease-out),
+    transform var(--dur-lines) var(--ease-out);
+  transition-delay: calc(var(--d, 0ms) + var(--i, 0) * var(--stagger-lines));
+}
+
+.js [data-split].is-in .split-line__inner {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- M6 image settle ---------- */
+.js [data-media] [data-media-inner] {
+  transform: scale(var(--media-scale-from));
+  transition: transform var(--dur-media) var(--ease-out);
+}
+
+.js [data-media].is-in [data-media-inner] {
+  transform: none;
+}
+
+/* ---------- M1 hero entrance (above the fold: starts at first paint, no observer) ---------- */
+@keyframes motion-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-distance), 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes motion-settle {
+  from {
+    opacity: 0.6;
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes motion-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.js [data-hero-visual] {
+  animation: motion-settle 1200ms var(--ease-out) both;
+}
+
+.js [data-hero-line] {
+  animation: motion-rise 800ms var(--ease-out) both;
+  animation-delay: calc(100ms + var(--i, 0) * 100ms);
+}
+
+.js [data-hero-cta] {
+  animation: motion-rise 700ms var(--ease-out) 400ms both;
+}
+
+/* ---------- Boot failure: everything visible ---------- */
+.motion-fallback [data-reveal],
+.motion-fallback [data-split],
+.motion-fallback [data-split] .split-line__inner,
+.motion-fallback [data-media] [data-media-inner] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ---------- Scroll-linked effects (progressive enhancement) ---------- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* M7 parallax: oversized banner image drifts across its card's pass through the viewport.
+       Driven by the (static) card's timeline, not the moving element's own. Desktop + fine pointer only. */
+    @media (min-width: 1024px) and (pointer: fine) {
+      [data-parallax-scope] {
+        view-timeline: --parallax block;
+      }
+
+      [data-parallax] {
+        animation: motion-parallax linear both;
+        animation-timeline: --parallax;
+        animation-range: cover 0% cover 100%;
+      }
+    }
+
+    /* M8 Apple-style scroll-linked rise: scrubbed and reversible over ~40% of the viewport pass. */
+    [data-scroll-rise-scope] {
+      view-timeline: --rise block;
+    }
+
+    .js [data-scroll-rise] {
+      transition: none;
+      animation: motion-scroll-rise linear both;
+      animation-timeline: --rise;
+      animation-range: entry 0% cover 40%;
+    }
+
+    /* M9 background scale while the section crosses the viewport. */
+    [data-scroll-scale-scope] {
+      view-timeline: --bgscale block;
+    }
+
+    [data-scroll-scale] {
+      animation: motion-bg-scale linear both;
+      animation-timeline: --bgscale;
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
+
+@keyframes motion-parallax {
+  from {
+    transform: translate3d(0, -60px, 0);
+  }
+  to {
+    transform: translate3d(0, 60px, 0);
+  }
+}
+
+@keyframes motion-scroll-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes motion-bg-scale {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* ---------- Reduced motion: no movement, short fades ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal],
+  .js [data-split] .split-line__inner {
+    transform: none !important;
+    transition: opacity 200ms linear !important;
+    transition-delay: 0ms !important;
+  }
+
+  .js [data-media] [data-media-inner] {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .js [data-hero-visual],
+  .js [data-hero-line],
+  .js [data-hero-cta] {
+    animation: motion-fade 200ms linear both !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

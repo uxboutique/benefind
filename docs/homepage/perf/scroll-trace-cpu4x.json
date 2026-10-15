@@ -1,0 +1,15 @@
+{
+  "cpuSlowdown": 4,
+  "scrollHeight": 7798,
+  "frames": 212,
+  "medianFrameMs": 16.7,
+  "framesOver20ms": 35,
+  "framesOver33ms": 13,
+  "longTasksOver50ms": 0,
+  "longestTaskMs": 30.1,
+  "layoutEvents": 53,
+  "layoutTotalMs": 59,
+  "recalcStyleTotalMs": 227.9,
+  "scriptTotalMs": 288.8,
+  "paintTotalMs": 247.7
+}

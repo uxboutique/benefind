@@ -1,0 +1,119 @@
+{
+  "entrance [ms, h1 line, cta]": [
+    [
+      150,
+      0.766288,
+      0
+    ],
+    [
+      400,
+      0.983183,
+      0.775883
+    ],
+    [
+      700,
+      0.999754,
+      0.987423
+    ],
+    [
+      1000,
+      1,
+      0.999999
+    ],
+    [
+      1300,
+      1,
+      1
+    ],
+    [
+      1800,
+      1,
+      1
+    ]
+  ],
+  "hero animations still running @1.8s": 0,
+  "nav clickable immediately": true,
+  "area card opacity before scroll": 0,
+  "area card opacity after scroll": 1,
+  "aree h2 split lines": {
+    "ready": true,
+    "lines": 1,
+    "isIn": true,
+    "text": "Quattro aree, un solo gruppo."
+  },
+  "header bottom after down / up": [
+    0,
+    81
+  ],
+  "stats rise [viewport top offset, op/tf]": [
+    [
+      950,
+      [
+        0,
+        "matrix(1, 0, 0, 1, 0, 40)"
+      ]
+    ],
+    [
+      800,
+      [
+        0.37,
+        "matrix(1, 0, 0, 1, 0, 25.1357)"
+      ]
+    ],
+    [
+      650,
+      [
+        0.77,
+        "matrix(1, 0, 0, 1, 0, 9.22388)"
+      ]
+    ],
+    [
+      500,
+      [
+        1,
+        "matrix(1, 0, 0, 1, 0, 0)"
+      ]
+    ],
+    [
+      300,
+      [
+        1,
+        "matrix(1, 0, 0, 1, 0, 0)"
+      ]
+    ]
+  ],
+  "stats opacity after scrolling back": 0.10641,
+  "parallax transforms": [
+    "matrix(1, 0, 0, 1, 0, -51.0381)",
+    "matrix(1, 0, 0, 1, 0, -15.1904)",
+    "matrix(1, 0, 0, 1, 0, 20.6572)",
+    "matrix(1, 0, 0, 1, 0, 47.5429)"
+  ],
+  "hidden reveal elements after full pass": [],
+  "CLS (full scroll)": 0,
+  "console errors/warnings": [],
+  "markets active after next": 1,
+  "markets active after ArrowRight": 2,
+  "next disabled at end": true,
+  "menu open: expanded / focus / scroll lock / main inert": [
+    "true",
+    "Markets",
+    true,
+    true
+  ],
+  "menu after Esc: expanded / panel hidden / focus": [
+    "false",
+    true,
+    "Apri menu"
+  ],
+  "RM hero line opacity @300ms": 1,
+  "RM stats transform / opacity": [
+    "none",
+    "1",
+    0
+  ],
+  "RM parallax animations": 0,
+  "RM scroll-behavior": "auto",
+  "RM console": [],
+  "noJS html class": true
+}

@@ -1,0 +1,112 @@
+
+# H2.marquee-headline typography-headline "Tanta intelligenza, sempre al tuo serviz" y=232
+  top=232 d1 op=1 tf=matrix(1, 0, 0, 1, -630, 0) st= cls=marquee-wrapper viewport-content reveal
+  top=232 d1 op=1 tf=matrix(1, 0, 0, 1, -630, 0) st= cls=marquee-wrapper viewport-content reveal
+  top=232 d1 op=1 tf=matrix(1, 0, 0, 1, -630, 0) st= cls=marquee-wrapper viewport-content reveal
+  top=232 d1 op=1 tf=matrix(1, 0, 0, 1, -630, 0) st= cls=marquee-wrapper viewport-content reveal
+  top=200 d1 op=1 tf=matrix(1, 0, 0, 1, -630, 0) st= cls=marquee-wrapper viewport-content reveal
+  top=0 d1 op=1 tf=matrix(1, 0, 0, 1, -630, 0) st= cls=marquee-wrapper viewport-content reveal
+
+# P.caption typography-media-card-gallery-headline "Trasforma le foto con nuovi strumenti AI" y=1382
+  top=991 d1 op=1 tf=matrix(1, 0, 0, 1, 0, 0) st= cls=caption-animation-container pin-offset
+  top=770 d1 op=1 tf=matrix(1, 0, 0, 1, 0, 0) st= cls=caption-animation-container pin-offset
+  top=570 d1 op=1 tf=matrix(1, 0, 0, 1, 0, 0) st= cls=caption-animation-container pin-offset
+  top=370 d1 op=1 tf=matrix(1, 0, 0, 1, 0, 0) st= cls=caption-animation-container pin-offset
+  top=170 d1 op=1 tf=matrix(1, 0, 0, 1, 0, 0) st= cls=caption-animation-container pin-offset
+  top=-30 d1 op=1 tf=matrix(1, 0, 0, 1, 0, 0) st= cls=caption-animation-container pin-offset
+
+# PICTURE.shared-highlights-highlights-reframe-startframe start-frame  "" y=1334
+  top=0 static
+  top=0 static
+  top=0 static
+  top=0 static
+  top=0 static
+  top=0 static
+
+# PICTURE.ios-highlights-child-safety positioned-media-element pin-off "" y=1334
+  top=970 d3 op=1 tf=none st=--progress: 1; cls=card-container gallery-item media-galler
+  top=770 d3 op=1 tf=none st=--progress: 1; cls=card-container gallery-item media-galler
+  top=570 d3 op=1 tf=none st=--progress: 1; cls=card-container gallery-item media-galler
+  top=370 d3 op=1 tf=none st=--progress: 1; cls=card-container gallery-item media-galler
+  top=170 d3 op=1 tf=none st=--progress: 1; cls=card-container gallery-item media-galler
+  top=-30 d3 op=1 tf=none st=--progress: 1; cls=card-container gallery-item media-galler
+
+# H2.ric-type-lockup-eyebrow typography-ric-type-lockup-super-eye "Apple Intelligence nelle app" y=2404
+  top=1000 d0 op=0 tf=matrix(1, 0, 0, 1, 0, 30) st=transform: matrix(1, 0, 0, 1, 0, 30); opacity: 0; cls=ric-type-lockup-eyebrow typography-ric-t
+  top=780 d0 op=0.427093 tf=matrix(1, 0, 0, 1, 0, 9.8832) st=transform: matrix(1, 0, 0, 1, 0, 9.8832); opacity: 0.427093; cls=ric-type-lockup-eyebrow typography-ric-t
+  top=570 d0 op=0.999244 tf=matrix(1, 0, 0, 1, 0, 0) st=transform: matrix(1, 0, 0, 1, 0, 0); opacity: 0.999244; cls=ric-type-lockup-eyebrow typography-ric-t
+  top=370 d0 op=1 tf=matrix(1, 0, 0, 1, 0, 0) st=transform: matrix(1, 0, 0, 1, 0, 0); opacity: 1; cls=ric-type-lockup-eyebrow typography-ric-t
+  top=170 d0 op=1 tf=matrix(1, 0, 0, 1, 0, 0) st=transform: matrix(1, 0, 0, 1, 0, 0); opacity: 1; cls=ric-type-lockup-eyebrow typography-ric-t
+  top=-30 static
+
+# PICTURE.shared-apple-intelligence-photo positioned-media-element pin "" y=2619
+  top=970 static
+  top=770 static
+  top=570 static
+  top=370 static
+  top=170 static
+  top=-30 static
+
+# H3.card-caption-heading typography-caption-tile "Suggeri­menti, per darti subito da fare." y=3099
+  top=970 static
+  top=770 static
+  top=570 static
+  top=370 static
+  top=170 static
+  top=-30 static
+
+# PICTURE.shared-apple-intelligence-context positioned-media-element p "" y=2619
+  top=970 static
+  top=770 static
+  top=570 static
+  top=370 static
+  top=170 static
+  top=-30 static
+
+# H3.card-caption-heading typography-caption-tile "Password da cambiare? Basta un tap." y=3099
+  top=970 static
+  top=770 static
+  top=570 static
+  top=370 static
+  top=170 static
+  top=-30 static
+
+# PICTURE.shared-apple-intelligence-shortcut positioned-media-element  "" y=2619
+  top=970 static
+  top=770 static
+  top=570 static
+  top=370 static
+  top=170 static
+  top=-30 static
+
+# H3.card-caption-heading typography-caption-tile "Prima le cose fondamentali." y=4252
+  top=970 static
+  top=770 static
+  top=570 static
+  top=370 static
+  top=170 static
+  top=-30 static
+
+# PICTURE.shared-child-safety-browse positioned-media-element pin-offs "" y=3772
+  top=970 static
+  top=770 static
+  top=570 static
+  top=370 static
+  top=170 static
+  top=-30 static
+
+# H3.card-caption-heading typography-caption-tile "Limiti di tempo e orari." y=4252
+  top=970 static
+  top=770 static
+  top=570 static
+  top=370 static
+  top=170 static
+  top=-30 static
+
+# PICTURE.shared-child-safety-controls positioned-media-element pin-of "" y=3772
+  top=970 static
+  top=770 static
+  top=570 static
+  top=370 static
+  top=170 static
+  top=-30 static

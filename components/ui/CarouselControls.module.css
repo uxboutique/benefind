@@ -1,0 +1,55 @@
+.controls {
+  display: flex;
+}
+
+.btn {
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  transition:
+    background-color var(--dur-ui) var(--ease-io),
+    opacity var(--dur-ui) var(--ease-io);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* Markets: 50×50 translucent circles, gap 16 */
+.glass {
+  gap: 16px;
+}
+
+.glass .btn {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.flip {
+  transform: rotate(180deg);
+}
+
+/* Technologies: navy pills 47×45, gap 8 */
+.solid {
+  gap: 8px;
+}
+
+.solid .btn {
+  width: 47px;
+  height: 45px;
+  background: var(--c-navy-900);
+  color: var(--c-white);
+  font-size: 16px;
+}
+
+@media (hover: hover) {
+  .glass .btn:not(:disabled):hover {
+    background: rgba(255, 255, 255, 0.45);
+  }
+
+  .solid .btn:not(:disabled):hover {
+    background: var(--c-indigo-800);
+  }
+}

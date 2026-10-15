@@ -1,0 +1,222 @@
+.section {
+  padding-top: var(--space-section);
+}
+
+/* Figma: title col 630, paragraphs col at x817 / 540 wide */
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 630px) minmax(0, 540px);
+  justify-content: space-between;
+  align-items: start;
+  gap: 32px;
+}
+
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 0;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--c-ink-600);
+}
+
+/* ---- Slider ---- */
+.slider {
+  position: relative;
+  container-type: inline-size;
+  margin-top: 38px;
+}
+
+.track {
+  display: flex;
+  gap: 24px;
+  padding-inline: max(var(--gutter), (100cqw - var(--container)) / 2);
+  scroll-padding-inline: max(var(--gutter), (100cqw - var(--container)) / 2);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.track:focus-visible {
+  outline-offset: -3px;
+}
+
+.slide {
+  position: relative;
+  isolation: isolate;
+  flex: none;
+  display: grid;
+  grid-template-columns: 413px 1px minmax(0, 1fr);
+  column-gap: 0;
+  width: min(var(--container), 100cqw - 2 * var(--gutter));
+  height: 520px;
+  padding: 35px 39px 37px 50px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: var(--c-indigo-700);
+  color: var(--c-white);
+  scroll-snap-align: start;
+}
+
+/* Figma: bg image 1324×588 at −22/−34 */
+.bg {
+  position: absolute;
+  inset: -34px -22px;
+  z-index: -1;
+}
+
+.bgImg {
+  object-fit: cover;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding-right: 24px;
+  border-right: 1px solid rgba(255, 255, 255, 0.19);
+  grid-column: 1 / 3;
+}
+
+.eyebrow {
+  font-size: 16px;
+  line-height: normal;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-display-hero);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding: 8px 0 0 39px;
+  min-height: 0;
+}
+
+/* Figma: 745px nowrap text box in a 738px column (bleeds 7px into the right padding) */
+.lead {
+  margin-right: -10px;
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+}
+
+.photo {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--c-white);
+}
+
+.photoInner {
+  position: absolute;
+  inset: 0;
+}
+
+.photoBox {
+  position: absolute;
+}
+
+.photoImg {
+  object-fit: cover;
+}
+
+/* M11: the active slide's content settles in; neighbours stay quietly dimmed. */
+.left,
+.right {
+  transition:
+    opacity 500ms var(--ease-out),
+    transform 500ms var(--ease-out);
+}
+
+.slide:not([data-active]) .left,
+.slide:not([data-active]) .right {
+  opacity: 0.5;
+  transform: translate3d(0, 12px, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .left,
+  .right {
+    transition: opacity 200ms linear;
+  }
+
+  .slide:not([data-active]) .left,
+  .slide:not([data-active]) .right {
+    transform: none;
+  }
+}
+
+/* Controls overlay the slide's bottom-left corner on desktop (Figma: 50/433). */
+.controlsWrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 37px;
+  padding-left: 50px;
+  pointer-events: none;
+}
+
+.controls {
+  pointer-events: auto;
+  width: max-content;
+}
+
+@media (max-width: 1023px) {
+  .intro {
+    grid-template-columns: 1fr;
+  }
+
+  .slide {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 24px;
+    padding: 32px 28px 28px;
+  }
+
+  .left {
+    grid-column: auto;
+    border-right: 0;
+    padding-right: 0;
+  }
+
+  .right {
+    padding: 0;
+    gap: 20px;
+  }
+
+  .photo {
+    flex: none;
+    aspect-ratio: 738 / 346;
+  }
+
+  .controlsWrap {
+    position: static;
+    margin-top: 16px;
+    padding-left: 0;
+  }
+
+  .controlsWrap .controls button {
+    background: var(--c-navy-900);
+  }
+}
+
+@media (max-width: 767px) {
+  .slide {
+    padding: 24px 20px 20px;
+  }
+}

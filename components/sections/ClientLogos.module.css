@@ -1,0 +1,36 @@
+/* Figma: 170px band, logos centred vertically between x128 and x1312 */
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 170px;
+  padding-inline: 48px;
+}
+
+.item img {
+  height: auto;
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--line-on-light);
+}
+
+@media (max-width: 1023px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    row-gap: 40px;
+    height: auto;
+    padding: 56px 0;
+  }
+}
+
+@media (max-width: 599px) {
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 32px;
+    padding: 40px 0;
+  }
+}

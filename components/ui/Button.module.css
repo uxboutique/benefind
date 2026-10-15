@@ -1,0 +1,93 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  border-radius: var(--r-pill);
+  border: 1px solid transparent;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: normal;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-ui) var(--ease-io),
+    color var(--dur-ui) var(--ease-io),
+    border-color var(--dur-ui) var(--ease-io);
+}
+
+/* Heights match Figma: padding already accounts for the 1px border. */
+.md {
+  padding: 10px 17px; /* 43px tall */
+  font-size: 16px;
+}
+
+.sm {
+  padding: 10px 17px; /* 40px tall, header */
+  font-size: 14px;
+}
+
+.primary {
+  padding: 11px 19px; /* 45px tall */
+}
+
+.outline,
+.outline-light {
+  padding: 12px 20px; /* 47px tall */
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.light {
+  background: var(--c-white);
+  color: var(--c-navy-900);
+}
+
+.primary {
+  background: var(--c-navy-900);
+  color: var(--c-white);
+}
+
+.outline {
+  border-color: var(--c-navy-900);
+  color: var(--c-navy-900);
+}
+
+.outline-light {
+  border-color: var(--c-white);
+  color: var(--c-white);
+}
+
+.sky {
+  background: var(--c-sky-100);
+  color: var(--c-navy-900);
+}
+
+@media (hover: hover) {
+  .btn:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  .light:hover {
+    background: var(--c-lilac-100);
+  }
+
+  .primary:hover {
+    background: var(--c-indigo-800);
+  }
+
+  .outline:hover {
+    background: var(--c-navy-900);
+    color: var(--c-white);
+  }
+
+  .outline-light:hover {
+    background: var(--c-white);
+    color: var(--c-navy-900);
+  }
+
+  .sky:hover {
+    background: var(--c-lilac-100);
+  }
+}

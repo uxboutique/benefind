@@ -1,0 +1,96 @@
+/*
+ * Design tokens — reverse-engineered from Figma node 47:4207 (no Figma variables exist).
+ * Mapping table: docs/homepage/02-implementation-map.md §2.
+ */
+:root {
+  /* ---- Colour ---- */
+  --c-navy-950: #07063f;
+  --c-navy-900: #0c0a68;
+  --c-indigo-800: #1b1890;
+  --c-indigo-700: #2e2ab8;
+  --c-indigo-600: #3a3fd9;
+  --c-lilac-400: #7f7bf0;
+  --c-lilac-300: #a9a6f0;
+  --c-lilac-200: #c9c7f7;
+  --c-lilac-100: #e9e8f3;
+  --c-mist-50: #f4f3f8;
+  --c-sky-100: #d3e0f5;
+  --c-sky-500: #5d8dcb;
+  --c-ink-900: #1a1930;
+  --c-ink-600: #4a4960;
+  --c-ink-400: #9c9ab8;
+  --c-cocoa-900: #1f1c1b;
+  --c-white: #ffffff;
+
+  --glass-dark: rgba(0, 0, 0, 0.3);
+  --glass-light: rgba(255, 255, 255, 0.66);
+  --line-on-dark: rgba(255, 255, 255, 0.16);
+  --line-on-light: var(--c-lilac-100);
+
+  /* ---- Typography ---- */
+  --font-display: var(--font-newsreader), "Times New Roman", serif;
+  --font-sans: var(--font-geist), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Fluid display sizes: Figma value at ≥1280px, floor at 375px. */
+  --fs-display-xl: clamp(52px, 30.45px + 5.746vw, 104px);
+  --fs-display-l: clamp(44px, 32.4px + 3.094vw, 72px);
+  --fs-display-hero: clamp(40px, 30.06px + 2.652vw, 64px);
+  --fs-h2: clamp(36px, 27.71px + 2.21vw, 56px);
+  --fs-h3-l: clamp(32px, 25.37px + 1.768vw, 48px);
+  --fs-h3: clamp(30px, 25.86px + 1.105vw, 40px);
+  --fs-h4: clamp(26px, 23.51px + 0.663vw, 32px);
+  --fs-lead: clamp(18px, 16.34px + 0.442vw, 22px);
+  --fs-stat: clamp(40px, 35.03px + 1.326vw, 52px);
+
+  /* ---- Layout ---- */
+  --container: 1280px;
+  --gutter: 80px;
+  --space-section: 80px;
+  --header-h: 81px;
+  /* Distance from a full-width box's edge to the container edge. Use inside padding / scroll-padding,
+     where % resolves against the full-width box (used by full-bleed carousels). */
+  --edge: calc((100% - min(var(--container), 100% - 2 * var(--gutter))) / 2);
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-pill: 999px;
+
+  --blur-glass: 12px;
+  --blur-veil: 26px;
+
+  /* ---- Motion (mirrored in lib/motion/tokens.ts) ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-ui: 200ms;
+  --dur-reveal: 700ms;
+  --dur-lines: 800ms;
+  --dur-media: 1200ms;
+  --dur-hero: 1100ms;
+  --reveal-distance: 24px;
+  --stagger: 80ms;
+  --stagger-lines: 90ms;
+  --media-scale-from: 1.06;
+}
+
+@media (max-width: 1279px) {
+  :root {
+    --gutter: 48px;
+  }
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --gutter: 32px;
+    --space-section: 64px;
+    --header-h: 72px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --gutter: 20px;
+    --space-section: 56px;
+    --header-h: 64px;
+  }
+}

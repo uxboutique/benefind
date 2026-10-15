@@ -1,0 +1,62 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  height: clamp(520px, 88svh, 700px);
+  overflow: hidden;
+  background: var(--c-navy-900);
+  color: var(--c-white);
+}
+
+.visual {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+/* Figma "Velatura" */
+.veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 6, 63, 0) 0%,
+    rgba(7, 6, 63, 0) 30%,
+    rgba(7, 6, 63, 0.3) 44.528%,
+    rgba(7, 6, 63, 0.85) 100%
+  );
+}
+
+/* Figma: headline top 434 / CTA bottom 633 in a 700px frame → 67px bottom padding */
+.content {
+  padding-bottom: 67px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-display-hero);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  max-width: 951px;
+}
+
+.line {
+  display: block;
+}
+
+.line > span {
+  display: inline-block;
+}
+
+.cta {
+  margin-top: 22px;
+}
+
+@media (max-width: 767px) {
+  .content {
+    padding-bottom: 48px;
+  }
+}

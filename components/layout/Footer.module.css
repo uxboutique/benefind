@@ -1,0 +1,110 @@
+.footer {
+  background: var(--c-navy-950);
+  color: var(--c-lilac-100);
+  padding-block: 72px 32px;
+}
+
+.columns {
+  display: grid;
+  /* Figma columns start at 0/250/500/750/1000 in the 1280 container (the 5th, 330 wide, is clipped
+     by its frame), so: 4 × 230 + a 280 remainder, gap 20 — fluid below 1280. */
+  grid-template-columns: repeat(4, minmax(0, 230fr)) minmax(0, 280fr);
+  align-items: start;
+  column-gap: 20px;
+  row-gap: 40px;
+}
+
+.column ul,
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px; /* line box = 14px "normal" (18px), as in Figma */
+  line-height: normal;
+}
+
+.head {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-lilac-300);
+}
+
+.link {
+  font-size: 14px;
+  line-height: normal;
+  color: var(--c-lilac-100);
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size var(--dur-ui) var(--ease-io);
+}
+
+@media (hover: hover) {
+  .link:hover {
+    background-size: 100% 1px;
+  }
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.address {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 40px;
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line-on-dark);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 22px;
+  line-height: normal;
+  color: var(--c-white);
+}
+
+.legal {
+  font-size: 12px;
+  line-height: normal;
+  color: var(--c-ink-400);
+  text-align: right;
+}
+
+@media (max-width: 1023px) {
+  .columns {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .legal {
+    text-align: left;
+  }
+}
+
+@media (max-width: 479px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+}
