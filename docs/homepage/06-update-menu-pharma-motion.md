@@ -31,7 +31,11 @@ Button 120:4775 · Link 122:4867.
 - Carousel: drag, touch swipe, wheel and buttons move exactly 1 card; end states are correct.
   The anchor lands 81px below the top.
 
-## Open items / placeholders
+## Decisions (approved by the client on 2026-10-16)
+All the items below are approved as they are. Scope is limited to the 3 requested templates (Home, Mega-menu,
+Pharma). Integration Platforms stays in Figma only and will not be built in code.
+
+### Approved placeholders
 - GSK logo and photo on the Pharma page: brand-usage rights need confirming.
 - The 3 Pharma case slides and the "Altri markets" card copy are duplicated placeholder text from Figma.
 - The Enabling / Services / Products mega-menu panels are not designed in Figma. They reuse the
