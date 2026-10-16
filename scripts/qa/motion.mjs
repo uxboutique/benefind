@@ -115,10 +115,10 @@ const opacity = (page, sel) => page.evaluate((s) => { const el = document.queryS
 {
   const { ctx, page } = await newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
   await page.goto(base, { waitUntil: "networkidle" });
-  await page.tap('button[aria-controls]');
+  await page.tap('button[aria-controls][aria-label$=\"menu\"]');
   await page.waitForTimeout(600);
   log("menu open: expanded / focus / scroll lock / main inert", await page.evaluate(() => [
-    document.querySelector("button[aria-controls]").getAttribute("aria-expanded"),
+    document.querySelector("button[aria-controls][aria-label$=\"menu\"]").getAttribute("aria-expanded"),
     document.activeElement?.textContent,
     document.documentElement.classList.contains("no-scroll"),
     document.getElementById("main").hasAttribute("inert"),
@@ -127,8 +127,8 @@ const opacity = (page, sel) => page.evaluate((s) => { const el = document.queryS
   await page.keyboard.press("Escape");
   await page.waitForTimeout(600);
   log("menu after Esc: expanded / panel hidden / focus", await page.evaluate(() => [
-    document.querySelector("button[aria-controls]").getAttribute("aria-expanded"),
-    document.getElementById(document.querySelector("button[aria-controls]").getAttribute("aria-controls")).hidden,
+    document.querySelector("button[aria-controls][aria-label$=\"menu\"]").getAttribute("aria-expanded"),
+    document.getElementById(document.querySelector("button[aria-controls][aria-label$=\"menu\"]").getAttribute("aria-controls")).hidden,
     document.activeElement?.getAttribute("aria-label"),
   ]));
   await ctx.close();

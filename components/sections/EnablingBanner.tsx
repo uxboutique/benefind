@@ -20,7 +20,7 @@ export function EnablingBanner() {
           </h2>
           <p className={styles.text}>{enablingBanner.text}</p>
           <div>
-            <Button href={enablingBanner.cta.href} variant="light">
+            <Button href={enablingBanner.cta.href} variant="white">
               {enablingBanner.cta.label}
             </Button>
           </div>

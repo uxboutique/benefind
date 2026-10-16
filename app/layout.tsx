@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MotionRoot } from "@/components/motion/MotionRoot";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import "./globals.css";
 
 // Newsreader Light with its optical-size axis (opsz 6–72), latin subset, from Google Fonts (OFL).
@@ -23,7 +24,7 @@ const newsreader = localFont({
 // Self-hosted at build time by next/font (font-display: swap, preloaded).
 const geist = Geist({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-geist",
   display: "swap",
 });
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main id="main">{children}</main>
         <Footer />
         <MotionRoot />
+        <SmoothScroll />
       </body>
     </html>
   );

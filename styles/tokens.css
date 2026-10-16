@@ -26,6 +26,7 @@
   --glass-light: rgba(255, 255, 255, 0.66);
   --line-on-dark: rgba(255, 255, 255, 0.16);
   --line-on-light: var(--c-lilac-100);
+  --c-line-menu: #dedede; /* mega-menu border (Figma 117:4134) */
 
   /* ---- Typography ---- */
   --font-display: var(--font-newsreader), "Times New Roman", serif;
@@ -37,10 +38,12 @@
   --fs-display-hero: clamp(40px, 30.06px + 2.652vw, 64px);
   --fs-h2: clamp(36px, 27.71px + 2.21vw, 56px);
   --fs-h3-l: clamp(32px, 25.37px + 1.768vw, 48px);
-  --fs-h3: clamp(30px, 25.86px + 1.105vw, 40px);
+  --fs-h3: clamp(28px, 24.69px + 0.884vw, 36px);
   --fs-h4: clamp(26px, 23.51px + 0.663vw, 32px);
   --fs-lead: clamp(18px, 16.34px + 0.442vw, 22px);
   --fs-stat: clamp(40px, 35.03px + 1.326vw, 52px);
+  /* Figma text styles "48" / "56" / "64" (Newsreader Light) */
+  --ls-display: -0.5px;
 
   /* ---- Layout ---- */
   --container: 1280px;

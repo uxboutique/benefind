@@ -1,0 +1,98 @@
+.slider {
+  container-type: inline-size;
+}
+
+.track {
+  display: flex;
+  gap: 24px;
+  padding-inline: max(var(--gutter), (100cqw - var(--container)) / 2);
+  scroll-padding-inline: max(var(--gutter), (100cqw - var(--container)) / 2);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.track[data-dragging] {
+  cursor: grabbing;
+}
+
+.track:focus-visible {
+  outline-offset: -3px;
+}
+
+.card {
+  position: relative;
+  isolation: isolate;
+  flex: none;
+  width: min(360px, 100cqw - 2 * var(--gutter) - 24px);
+  height: 520px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transition: transform 600ms var(--ease-out);
+}
+
+.photoBox {
+  position: absolute;
+}
+
+.img {
+  object-fit: cover;
+}
+
+/* Glass panel: left 24, top 237, 278 wide, padding 28, gap 14, black 60% */
+.panel {
+  position: absolute;
+  left: 24px;
+  top: 237px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  width: min(278px, 100% - 48px);
+  padding: 28px;
+  border-radius: var(--r-md);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+  color: var(--c-white);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-h4);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+
+.text {
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.controls {
+  margin-top: 32px;
+}
+
+@media (hover: hover) {
+  .card:hover .media {
+    transform: scale(1.03);
+  }
+}

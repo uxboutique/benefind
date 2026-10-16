@@ -17,7 +17,7 @@ export function Careers() {
       <div className={`container ${styles.inner}`}>
         <SectionHeading id="careers-title" eyebrow={careers.eyebrow} title={careers.title} tone="dark" className={styles.heading}>
           <div data-reveal="">
-            <Button href={careers.cta.href} variant="outline-light" arrow>
+            <Button href={careers.cta.href} variant="white">
               {careers.cta.label}
             </Button>
           </div>
@@ -36,7 +36,7 @@ export function Careers() {
                 ))}
               </h3>
               <div>
-                <Button href={story.cta.href} variant="primary" arrow>
+                <Button href={story.cta.href} variant="accent">
                   {story.cta.label}
                 </Button>
               </div>

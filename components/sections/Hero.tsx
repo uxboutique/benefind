@@ -22,7 +22,7 @@ export function Hero() {
           ))}
         </h1>
         <div className={styles.cta} data-hero-cta="">
-          <Button href={hero.cta.href} variant="light">
+          <Button href={hero.cta.href} variant="white">
             {hero.cta.label}
           </Button>
         </div>

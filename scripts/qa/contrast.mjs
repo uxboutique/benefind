@@ -22,11 +22,11 @@ for (const width of [1440, 390]) {
     const el = page.locator(sel).first();
     if (!(await el.count())) { console.log(sel, "not found"); continue; }
     await el.scrollIntoViewIfNeeded(); await page.waitForTimeout(250);
-    const info = await el.evaluate((n) => { const cs = getComputedStyle(n); return { color: cs.color, size: parseFloat(cs.fontSize), weight: +cs.fontWeight, opacity: +cs.opacity }; });
+    const info = await el.evaluate((n) => { const cs = getComputedStyle(n); return { color: cs.color, bg: cs.backgroundColor, size: parseFloat(cs.fontSize), weight: +cs.fontWeight, opacity: +cs.opacity }; });
     const fg = info.color.match(/\d+(\.\d+)?/g).map(Number);
-    await el.evaluate((n) => { n.dataset.prevColor = n.style.color; n.style.color = "transparent"; n.querySelectorAll("*").forEach((c) => (c.style.color = "transparent")); });
+    await el.evaluate((n) => { n.dataset.prevColor = n.style.color; n.style.color = "transparent"; n.querySelectorAll("*").forEach((c) => { c.style.color = "transparent"; if (c.matches("img, svg")) c.style.visibility = "hidden"; }); });
     const buf = await el.screenshot();
-    await el.evaluate((n) => { n.style.color = n.dataset.prevColor; n.querySelectorAll("*").forEach((c) => (c.style.color = "")); });
+    await el.evaluate((n) => { n.style.color = n.dataset.prevColor; n.querySelectorAll("*").forEach((c) => { c.style.color = ""; c.style.visibility = ""; }); });
     const px = await page.evaluate(async (b64) => {
       const img = new Image(); img.src = "data:image/png;base64," + b64; await img.decode();
       const c = new OffscreenCanvas(img.width, img.height); const x = c.getContext("2d"); x.drawImage(img, 0, 0);
@@ -34,6 +34,9 @@ for (const width of [1440, 390]) {
       for (let i = 0; i < d.length; i += 16) out.push([d[i], d[i + 1], d[i + 2]]);
       return out;
     }, buf.toString("base64"));
+    // Opaque own background (e.g. a solid button): measure against it, not the photo behind its rounded corners.
+    const ownBg = info.bg.match(/\d+(\.\d+)?/g)?.map(Number);
+    if (ownBg && (ownBg[3] ?? 1) === 1) px.splice(0, px.length, ownBg.slice(0, 3));
     // fg alpha (e.g. stat labels at 70% opacity) — blend over each bg pixel
     const a = (fg[3] ?? 1) * info.opacity;
     const rs = px.map((bg) => ratio(fg.slice(0, 3).map((c, i) => c * a + bg[i] * (1 - a)), bg)).sort((p, q) => p - q);

@@ -42,7 +42,7 @@ export function Markets() {
                 <p className={styles.eyebrow}>{s.eyebrow}</p>
                 <h3 className={styles.title}>{s.title}</h3>
                 <div>
-                  <Button href={s.cta.href} variant="light">
+                  <Button href={s.cta.href} variant="white">
                     {s.cta.label}
                   </Button>
                 </div>

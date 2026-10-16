@@ -8,15 +8,6 @@ import { asset } from "@/lib/asset";
 
 export type Link = { label: string; href: string };
 
-export const nav: Link[] = [
-  { label: "Markets", href: "#mercati" },
-  { label: "Enabling Technologies", href: "#tecnologie" },
-  { label: "Services", href: "#servizi" },
-  { label: "Products", href: "#" },
-];
-
-export const contactHref = "#contatti";
-
 export const hero = {
   lines: ["Servizi IT per le aziende.", "Tecnologie e professionalità avanzate."],
   cta: { label: "Primary CTA", href: "#" },
@@ -87,8 +78,8 @@ export const markets = {
       bg: asset("/assets/images/markets-slide1-bg.png"),
       // Figma 98:4884 (added 2026-10-15) covers the older building photo in this slide.
       photo: { src: asset("/assets/images/markets-slide1-portrait.jpg"), alt: "" },
-      // Figma: 736×478 image box at 2/−22 inside the 738×346 frame.
-      photoBox: { left: "0.27%", top: "-6.36%", width: "99.73%", height: "138.15%" },
+      // Figma: 772×502 image box at −23/−34 inside the 738×346 frame.
+      photoBox: { left: "-3.12%", top: "-9.83%", width: "104.61%", height: "145.09%" },
       cta: { label: "Primary CTA", href: "#" },
     },
     {

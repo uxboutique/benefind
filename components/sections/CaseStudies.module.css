@@ -47,7 +47,7 @@
   line-height: normal;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--c-indigo-600);
+  color: var(--c-ink-600);
 }
 
 .tagSm {
@@ -59,7 +59,7 @@
   font-weight: 300;
   font-size: var(--fs-h3);
   line-height: 1.12;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   color: var(--c-navy-900);
 }
 
@@ -98,25 +98,9 @@
   color: var(--c-navy-900);
 }
 
-.more {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: normal;
-  color: var(--c-indigo-600);
-}
-
-.arrow {
-  display: inline-block;
-  transition: transform var(--dur-ui) var(--ease-out);
-}
-
 @media (hover: hover) {
   .card:hover .mediaInner {
     transform: scale(1.03);
-  }
-
-  .card:hover .arrow {
-    transform: translateX(3px);
   }
 }
 

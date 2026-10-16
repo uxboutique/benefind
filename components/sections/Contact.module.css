@@ -1,10 +1,10 @@
-/* Figma: arrows end at 6695, contact frame at 6751 with 80px padding → 136px above the headline */
+/* Figma: arrows end at 6700, contact headline at 6831 → 131px above the headline */
 .section {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
-  padding-block: 136px 80px;
+  padding-block: 131px 80px;
 }
 
 .title {
@@ -18,7 +18,8 @@
 
 .text {
   font-size: 18px;
-  line-height: normal;
+  font-weight: 500;
+  line-height: 1.35;
   color: var(--c-ink-600);
 }
 

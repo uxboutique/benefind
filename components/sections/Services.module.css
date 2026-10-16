@@ -66,9 +66,9 @@
 /* Figma: 1113 × 123 glass panel, centred; columns at 32 / 433 / 835 with dividers 16px before */
 .stats {
   display: grid;
-  grid-template-columns: 385fr 401fr 263fr;
-  width: min(1113px, 100%);
-  margin-inline: auto;
+  /* Figma: 1204 × 123, left-aligned; columns at 32 / 433 / 835 */
+  grid-template-columns: 385fr 401fr 321fr;
+  width: min(1204px, 100%);
   padding: 20px 32px 19px;
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: var(--r-sm);

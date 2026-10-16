@@ -1,0 +1,199 @@
+/* Figma 117:4134: 874 wide, centred, 8px below the header, white, 1px #dedede border, radius 8. */
+.wrap {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  width: min(874px, 100% - 2 * var(--gutter));
+  margin-inline: auto;
+  opacity: 0;
+  transform: translateY(-8px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 260ms var(--ease-out),
+    transform 360ms var(--ease-out),
+    visibility 0s linear 360ms;
+}
+
+.wrap[data-open] {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 260ms var(--ease-out),
+    transform 360ms var(--ease-out),
+    visibility 0s;
+}
+
+.panel {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding: 19px 24px 23px 23px;
+  border: 1px solid var(--c-line-menu);
+  border-radius: var(--r-sm);
+  background: var(--c-white);
+  box-shadow: 0 12px 40px rgba(7, 6, 63, 0.08);
+}
+
+/* Figma: list column 492 (23 → 515), card 334 at x515, right padding 24 */
+.withFeature {
+  grid-template-columns: minmax(0, 1fr) 334px;
+  gap: 0;
+}
+
+.listCol {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 4px;
+}
+
+/* "Markets" — Geist 14 Regular, text colour */
+.title {
+  align-self: flex-start;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--c-ink-600);
+}
+
+/* Two columns (Figma x 23 / 276 → 253px), rows 39px apart */
+.list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(var(--rows), auto);
+  grid-template-columns: 253px minmax(0, 1fr);
+  row-gap: 15px;
+}
+
+.list li {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 300ms var(--ease-out),
+    transform 400ms var(--ease-out);
+}
+
+.wrap[data-open] .list li {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(60ms + var(--i) * 25ms);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--c-navy-900);
+  transition:
+    opacity var(--dur-ui) var(--ease-io),
+    font-weight var(--dur-ui) var(--ease-io);
+}
+
+.arrow {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity var(--dur-ui) var(--ease-out),
+    transform var(--dur-ui) var(--ease-out);
+}
+
+/* Figma "Animate" (122:4922): the hovered/focused link turns Bold + arrow, the others drop to 50%. */
+.list:has(.link:hover, .link:focus-visible) .link:not(:hover, :focus-visible) {
+  opacity: 0.5;
+}
+
+.link:hover,
+.link:focus-visible {
+  font-weight: 700;
+}
+
+.link:hover .arrow,
+.link:focus-visible .arrow {
+  opacity: 1;
+  transform: none;
+}
+
+/* Feature card: 334 × 193, radius 8, image + bottom gradient, Newsreader Regular 20 */
+.feature {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  height: 193px;
+  margin-top: 1px;
+  padding: 0 16px 17px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: #d0d0d0;
+  color: var(--c-white);
+  isolation: isolate;
+}
+
+.featureMedia {
+  position: absolute;
+  inset: -12px -22px;
+  z-index: -1;
+  transform: scale(1.06);
+  transition: transform 900ms var(--ease-out);
+}
+
+.wrap[data-open] .featureMedia {
+  transform: none;
+}
+
+.featureMedia::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+}
+
+.featureImg {
+  object-fit: cover;
+}
+
+.featureTitle {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.featureArrow {
+  flex: none;
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .feature:hover .featureArrow {
+    transform: translateX(4px);
+  }
+
+  .wrap[data-open] .feature:hover .featureMedia {
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap,
+  .wrap[data-open] {
+    transform: none;
+  }
+
+  .list li,
+  .featureMedia {
+    transform: none !important;
+  }
+
+  .arrow {
+    transform: none;
+  }
+}

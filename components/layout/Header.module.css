@@ -52,23 +52,38 @@
   white-space: nowrap;
 }
 
+/* Figma "Line 6": 2px navy underline under the active item, 2px wider than the label each side,
+   sitting on the header's bottom edge (y60 in an 81px header → 20px below the label). */
+.navLink {
+  transition: opacity var(--dur-ui) var(--ease-io);
+}
+
 .navLink::after {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 2px;
-  height: 1px;
+  left: -2px;
+  right: -2px;
+  bottom: -9px;
+  height: 2px;
   background: currentColor;
   transform: scaleX(0);
-  transform-origin: right;
-  transition: transform var(--dur-ui) var(--ease-io);
+  transform-origin: left;
+  transition: transform 300ms var(--ease-out);
+}
+
+.navLink[aria-expanded="true"]::after,
+.nav:not([data-open]) .navLink[aria-current]::after {
+  transform: scaleX(1);
+}
+
+/* While a panel is open the other items drop to 50% (Figma 117:3816) */
+.nav[data-open] .navLink:not([aria-expanded="true"]) {
+  opacity: 0.5;
 }
 
 @media (hover: hover) {
-  .navLink:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+  .nav[data-open] .navLink:not([aria-expanded="true"]):hover {
+    opacity: 0.8;
   }
 }
 

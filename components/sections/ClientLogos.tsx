@@ -2,9 +2,10 @@ import { clientLogos } from "@/content/home";
 import styles from "./ClientLogos.module.css";
 
 /* ⚠ Logos as designed in Figma — confirm they are Benefind clients before launch. */
-export function ClientLogos() {
+/** `compact`: 120px band without the bottom rule (inner pages, Figma Pharma 119:4417). */
+export function ClientLogos({ compact = false }: { compact?: boolean }) {
   return (
-    <section className={styles.section} aria-label="Alcuni clienti">
+    <section className={[styles.section, compact ? styles.compact : ""].join(" ")} aria-label="Alcuni clienti">
       <div className="container">
         <ul className={styles.list}>
           {clientLogos.map((logo, i) => (
@@ -14,7 +15,7 @@ export function ClientLogos() {
             </li>
           ))}
         </ul>
-        <hr className={styles.rule} />
+        {!compact && <hr className={styles.rule} />}
       </div>
     </section>
   );

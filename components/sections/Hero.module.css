@@ -39,7 +39,7 @@
   font-weight: 300;
   font-size: var(--fs-display-hero);
   line-height: 1.04;
-  letter-spacing: -0.035em;
+  letter-spacing: var(--ls-display);
   max-width: 951px;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .cta {
-  margin-top: 22px;
+  margin-top: 25px;
 }
 
 @media (max-width: 767px) {

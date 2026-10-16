@@ -1,0 +1,42 @@
+/* Vertical rhythm from Figma 117:3461 (y): intro ends 438 → logos 478 → banner 633 → cases 1237 →
+   slider 1443 → altri markets 2048 → cards 2175 → arrows 2727 → contact 2861 */
+.logos {
+  margin-top: 40px;
+}
+
+.banner {
+  margin-top: 35px;
+}
+
+.cases {
+  padding-top: 84px;
+}
+
+.casesSlider {
+  margin-top: 42px;
+}
+
+.markets {
+  padding-top: 85px;
+}
+
+.marketsSlider {
+  margin-top: 34px;
+}
+
+/* Figma: arrows end 2777, contact headline 2941 (home: 131px gap → +33 here) */
+.contact {
+  margin-top: 33px;
+}
+
+@media (max-width: 1023px) {
+  .cases,
+  .markets {
+    padding-top: var(--space-section);
+  }
+
+  .casesSlider,
+  .marketsSlider {
+    margin-top: 32px;
+  }
+}

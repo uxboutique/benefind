@@ -13,7 +13,7 @@ export function Contact() {
         {contact.text}
       </p>
       <div data-reveal="" style={{ "--d": "80ms" } as React.CSSProperties}>
-        <Button href={contact.cta.href} variant="primary" arrow>
+        <Button href={contact.cta.href} variant="accent">
           {contact.cta.label}
         </Button>
       </div>

@@ -3,17 +3,27 @@
 import { asset } from "@/lib/asset";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { contactHref, footer, nav } from "@/content/home";
+import { contactHref, primaryNav } from "@/content/navigation";
 import { motion } from "@/lib/motion/tokens";
+import { MegaMenu } from "./MegaMenu";
 import styles from "./Header.module.css";
 
 const MENU_CLOSE_MS = 400;
+const MEGA_OPEN_DELAY = 90; // hover intent
+const MEGA_CLOSE_DELAY = 220;
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [mega, setMega] = useState<string | null>(null);
+  const [megaShown, setMegaShown] = useState<string | null>(null); // content kept during the close fade
+  const megaTimer = useRef(0);
+  const pathname = usePathname();
+  const currentSection = pathname?.includes("/markets/") ? "markets" : null;
   const panelId = useId();
+  const megaId = useId();
   const headerRef = useRef<HTMLElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -74,7 +84,7 @@ export function Header() {
     const update = () => {
       ticking = false;
       const y = window.scrollY;
-      const locked = header.hasAttribute("data-menu-open") || header.querySelector(":focus-visible") !== null;
+      const locked = header.hasAttribute("data-menu-open") || header.hasAttribute("data-mega-open") || header.querySelector(":focus-visible") !== null;
       if (locked || y < motion.headerHideAfter || y < lastY - 4) header.classList.remove(styles.isHidden);
       else if (y > lastY + 4) header.classList.add(styles.isHidden);
       lastY = y;
@@ -96,6 +106,52 @@ export function Header() {
     };
   }, []);
 
+  // ---- Desktop mega-menu (Figma 117:3815 / 122:4922) ----
+  const openMega = useCallback((id: string, delay = 0) => {
+    clearTimeout(megaTimer.current);
+    megaTimer.current = window.setTimeout(() => {
+      setMega(id);
+      setMegaShown(id);
+    }, delay);
+  }, []);
+  const closeMega = useCallback((delay = 0) => {
+    clearTimeout(megaTimer.current);
+    megaTimer.current = window.setTimeout(() => setMega(null), delay);
+  }, []);
+  const keepMega = useCallback(() => clearTimeout(megaTimer.current), []);
+
+  useEffect(() => {
+    if (!mega) return;
+    const header = headerRef.current;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setMega(null);
+      header?.querySelector<HTMLButtonElement>(`[data-nav="${mega}"]`)?.focus();
+    };
+    const onFocusOut = (e: FocusEvent) => {
+      if (header && !header.contains(e.relatedTarget as Node | null)) setMega(null);
+    };
+    const onPointerDown = (e: PointerEvent) => {
+      if (header && !header.contains(e.target as Node)) setMega(null);
+    };
+    window.addEventListener("keydown", onKey);
+    header?.addEventListener("focusout", onFocusOut);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      header?.removeEventListener("focusout", onFocusOut);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [mega]);
+
+  useEffect(() => () => clearTimeout(megaTimer.current), []);
+  useEffect(() => {
+    headerRef.current?.toggleAttribute("data-mega-open", mega !== null);
+  }, [mega]);
+
+  const finePointer = () => window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const megaItem = primaryNav.find((n) => n.id === megaShown) ?? null;
+
   return (
     <header ref={headerRef} id="site-header" className={styles.header}>
       <div className={`container ${styles.bar}`}>
@@ -103,20 +159,39 @@ export function Header() {
           <Image src={asset("/assets/logos/gruppo-benefind.png")} alt="" width={155} height={47} priority sizes="155px" />
         </Link>
 
-        <nav className={styles.nav} aria-label="Principale">
+        <nav className={styles.nav} aria-label="Principale" data-open={mega ? "" : undefined} onPointerLeave={() => closeMega(MEGA_CLOSE_DELAY)}>
           <ul>
-            {nav.map((item) => (
-              <li key={item.label}>
-                <a href={item.href} className={styles.navLink}>
+            {primaryNav.map((item) => (
+              <li key={item.id}>
+                <button
+                  type="button"
+                  data-nav={item.id}
+                  className={styles.navLink}
+                  aria-expanded={mega === item.id}
+                  aria-controls={megaId}
+                  aria-current={currentSection === item.id ? "true" : undefined}
+                  onPointerEnter={() => finePointer() && openMega(item.id, mega ? 0 : MEGA_OPEN_DELAY)}
+                  onClick={() => (mega === item.id ? closeMega() : openMega(item.id))}
+                  onKeyDown={(e) => {
+                    // Tab from an open trigger moves into its panel (the panel follows the nav in the DOM).
+                    if (e.key === "Tab" && !e.shiftKey && mega === item.id) {
+                      const first = document.getElementById(megaId)?.querySelector<HTMLElement>("a");
+                      if (first) {
+                        e.preventDefault();
+                        first.focus();
+                      }
+                    }
+                  }}
+                >
                   {item.label}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
         </nav>
 
         <div className={styles.utility}>
-          <Button href={contactHref} variant="sky" size="sm" arrow className={styles.cta}>
+          <Button href={contactHref} variant="secondary" size="s" className={styles.cta}>
             Contattaci
           </Button>
           <a href="#" className={styles.iconBtn} aria-label="Cerca">
@@ -144,31 +219,50 @@ export function Header() {
         </div>
       </div>
 
-      {/* Menu panel — not designed in Figma; minimal styling from page tokens (flagged in report). */}
+      <MegaMenu
+        onExitEnd={() => {
+          // Tab past the last link → next nav trigger (or the CTA after the last one)
+          const triggers = [...(headerRef.current?.querySelectorAll<HTMLElement>("[data-nav]") ?? [])];
+          const i = triggers.findIndex((t) => t.dataset.nav === mega);
+          setMega(null);
+          (triggers[i + 1] ?? headerRef.current?.querySelector<HTMLElement>(`.${styles.utility} a`))?.focus();
+        }}
+        onExitStart={() => headerRef.current?.querySelector<HTMLElement>(`[data-nav="${mega}"]`)?.focus()}
+        id={megaId}
+        item={megaItem}
+        open={mega !== null}
+        onNavigate={() => setMega(null)}
+        onPointerEnter={keepMega}
+        onPointerLeave={() => closeMega(MEGA_CLOSE_DELAY)}
+      />
+
+      {/* Mobile / burger panel — not designed in Figma; minimal styling from page tokens (flagged in report). */}
       <div ref={panelRef} id={panelId} className={styles.panel} hidden>
         <div className={`container ${styles.panelInner}`}>
           <nav aria-label="Menu">
             <ul className={styles.panelPrimary}>
-              {nav.map((item) => (
-                <li key={item.label}>
-                  <a href={item.href} onClick={() => close(false)}>
+              {primaryNav.map((item) => (
+                <li key={item.id}>
+                  <Link href={item.href} onClick={() => close(false)}>
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li>
-                <a href={contactHref} onClick={() => close(false)}>
+                <Link href={contactHref} onClick={() => close(false)}>
                   Contattaci
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
           <div className={styles.panelSecondary}>
-            <p className={styles.panelHead}>{footer.columns[0].title}</p>
+            <p className={styles.panelHead}>{primaryNav[0].label}</p>
             <ul>
-              {footer.columns[0].links.map((l) => (
-                <li key={l}>
-                  <a href="#">{l}</a>
+              {primaryNav[0].links.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href} onClick={() => close(false)}>
+                    {l.label}
+                  </Link>
                 </li>
               ))}
             </ul>

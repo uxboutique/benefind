@@ -7,6 +7,10 @@
   padding-inline: 48px;
 }
 
+.compact .list {
+  height: 120px;
+}
+
 .item img {
   height: auto;
 }

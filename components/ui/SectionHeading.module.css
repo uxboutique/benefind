@@ -16,9 +16,8 @@
   font-weight: 300;
   font-size: var(--fs-h2);
   line-height: 1.08;
-  letter-spacing: -0.03em;
+  letter-spacing: var(--ls-display);
   color: var(--c-navy-900);
-  text-wrap: balance;
 }
 
 .dark .eyebrow,

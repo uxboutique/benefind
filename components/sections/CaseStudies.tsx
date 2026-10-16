@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+import { TextLink } from "@/components/ui/TextLink";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { caseStudies } from "@/content/home";
 import styles from "./CaseStudies.module.css";
@@ -23,7 +24,7 @@ export function CaseStudies() {
           <h3 className={styles.featuredTitle}>{featured.title}</h3>
           <p className={styles.featuredBody}>{featured.text}</p>
           <div>
-            <Button href={featured.cta.href} variant="outline" arrow>
+            <Button href={featured.cta.href} variant="secondary">
               {featured.cta.label}
             </Button>
           </div>
@@ -43,9 +44,7 @@ export function CaseStudies() {
               </div>
               <p className={styles.tagSm}>{item.tag}</p>
               <h3 className={styles.cardTitle}>{item.title}</h3>
-              <span className={styles.more}>
-                Leggi <span className={styles.arrow} aria-hidden="true">→</span>
-              </span>
+              <TextLink>Leggi</TextLink>
             </a>
           </li>
         ))}

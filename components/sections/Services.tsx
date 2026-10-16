@@ -21,7 +21,7 @@ export function Services() {
           <div className={styles.body} data-reveal="">
             <p className={styles.text}>{services.text}</p>
             <div>
-              <Button href={services.cta.href} variant="light">
+              <Button href={services.cta.href} variant="white">
                 {services.cta.label}
               </Button>
             </div>

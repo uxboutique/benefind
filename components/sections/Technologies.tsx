@@ -41,7 +41,7 @@ export function Technologies() {
                 <h3 className={styles.title}>{card.title}</h3>
                 <p className={styles.body}>{card.text}</p>
                 <div>
-                  <Button href={card.cta.href} variant={card.theme === "light" ? "primary" : "light"} arrow>
+                  <Button href={card.cta.href} variant={card.theme === "light" ? "accent" : "white"}>
                     {card.cta.label}
                   </Button>
                 </div>

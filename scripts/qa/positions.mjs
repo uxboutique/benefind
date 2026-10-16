@@ -2,13 +2,13 @@
 import { chromium } from "@playwright/test";
 const targets = [
   ["header bottom", "#site-header", "bottom", 81],
-  ["hero h1", "#hero-title", "top", 81 + 434],
+  ["hero h1", "#hero-title", "top", 81 + 364],
   ["logos rule", "main > section:nth-of-type(2) hr", "top", 951],
   ["banner card", "#enabling-title", "panelTop", 1031],
   ["areas eyebrow", "#aree-title", "eyebrowTop", 1631],
   ["areas rule", "main > section:nth-of-type(4) hr", "top", 2217],
   ["markets eyebrow", "#mercati-title", "eyebrowTop", 2301],
-  ["markets slide", "#mercati [aria-roledescription=slide]", "top", 2503],
+  ["markets slide", "#mercati [aria-roledescription=slide]", "top", 2508],
   ["services", "#servizi", "top", 3106],
   ["services stats", "#servizi dl", "top", 3106 + 463],
   ["case eyebrow", "#case-title", "eyebrowTop", 3861],
