@@ -37,3 +37,21 @@ Button 120:4775 · Link 122:4867.
 - The Enabling / Services / Products mega-menu panels are not designed in Figma. They reuse the
   footer lists and follow the Markets panel layout.
 - Lenis was checked with headless wheel events; still worth a quick feel-check on a real trackpad.
+
+## Figma file (SsKBEykTxpXsWKvGVuS0ed, page "Layout")
+- **Tokens**: the collection "Color" keeps its original variable IDs, renamed to `brand/*`, `text/*`, `surface/*`,
+  `base/*`, plus 12 new colours from `styles/tokens.css`. New collections "Spacing" (space/4–120,
+  button/*, link/gap, layout/*) and "Radius" (sm/md/lg/pill). Every variable has explicit scopes and
+  WEB code syntax (`var(--…)`).
+- **Components**: Button 120:4775 and Link 122:4867 have a `Label` text property. Padding, gap and radius
+  are bound to tokens, text/arrow colours to variables, and the stray white fill on the icon frame was removed.
+- **Layouts**: 33 hand-drawn CTAs and "Leggi →" texts in Home, Menu ×2 and Pharma are now Button/Link instances
+  (same mapping as the code). Auto layout is applied to: headers (space-between, gutter token), mega-menu
+  panels, Pharma intro, section headings, carousel arrow pairs.
+- **Motion spec**: frame "Motion spec · Carousel swipe" (133:188). The Markets track is keyframed
+  0 → 1 → 2 → 1 → 0 slides, 0.7 s each, cubic-bezier(0.16, 1, 0.3, 1), and Prev/Next fade to 40% at the ends.
+  Checked on an exported video.
+- **Integration Platforms**: the old 1920 page (Montserrat/Poppins, orange, watermarked stock image, "Video o
+  immagine" placeholder) is rebuilt as "Enabling Technologies > Integration Platforms - Concept" (136:197) at 1440 with the
+  concept components and the original copy. The old frame is kept, renamed "[OLD 1920 – sostituita]".
+  Placeholders: the case-study slider (GSK), the banner/card photos, and the banner CTA "Primary CTA".
