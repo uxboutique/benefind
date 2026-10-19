@@ -35,3 +35,12 @@
 - "[Name] Enabling Technologies", "[Nome]", "Lorem ipsum", "Primary CTA", and the GSK slides
   (also reused on Services).
 - Spera dashboard: the screenshot is a generic demo dashboard. As in Figma, the Spera logo covers its brand corner.
+
+## 2026-10-19 (later): smooth scroll off + carousel CTA fix
+- **Smooth scroll disabled at the client's request**: Lenis is removed (component and dependency) and so is CSS
+  `scroll-behavior: smooth`. Wheel and anchor scrolling are fully native and instant. Anchors still land
+  below the header (`scroll-padding-top`). The carousels keep their own one-card-per-gesture wheel handling.
+- **Bug fix, homepage Markets carousel**: the "Primary CTA" on the "Artificial Intelligence" slide had
+  `href="#"`, so clicking it jumped the page to the top. It now opens Integration Platforms (the only designed
+  Enabling page), and the Pharma slide opens Pharma. Site-wide, every placeholder link (`href="#"`) is now
+  inert (`components/motion/PlaceholderLinks.tsx`) instead of scrolling to the top.

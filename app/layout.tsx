@@ -3,8 +3,8 @@ import { Geist } from "next/font/google";
 import localFont from "next/font/local";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { PlaceholderLinks } from "@/components/motion/PlaceholderLinks";
 import { MotionRoot } from "@/components/motion/MotionRoot";
-import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import "./globals.css";
 
 // Newsreader Light with its optical-size axis (opsz 6–72), latin subset, from Google Fonts (OFL).
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main id="main">{children}</main>
         <Footer />
         <MotionRoot />
-        <SmoothScroll />
+        <PlaceholderLinks />
       </body>
     </html>
   );

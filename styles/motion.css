@@ -215,22 +215,4 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
-/* Lenis (desktop smooth wheel) — its own easing replaces CSS smooth scrolling */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-html.lenis {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-stopped {
-  overflow: clip;
-}
+/* Scrolling is fully native: no CSS smooth scrolling, no JS smooth-scroll library (client request 2026-10-19). */

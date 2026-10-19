@@ -14,8 +14,7 @@ import { prefersReducedMotion } from "@/lib/motion/tokens";
  *    generic smooth scroll; instant with prefers-reduced-motion;
  *  - one slide per swipe via `scroll-snap-stop: always` in CSS;
  *  - horizontal wheel / trackpad gestures handled here: one slide per gesture, locked until the
- *    momentum tail ends. Native handling was unreliable — as soon as any non-passive wheel listener
- *    exists on the page (e.g. Lenis), Chrome re-snaps every small step back to the start.
+ *    momentum tail ends (consistent with swipe; native snap could skip or re-snap on some trackpads).
  */
 
 const DURATION = 700;
@@ -128,7 +127,6 @@ export function useCarousel(count: number) {
       const dx = e.deltaX || (e.shiftKey ? e.deltaY : 0);
       if (Math.abs(dx) <= Math.abs(e.shiftKey ? 0 : e.deltaY)) return; // vertical → page scroll
       e.preventDefault();
-      (e as WheelEvent & { lenisStopPropagation?: boolean }).lenisStopPropagation = true;
       acc += dx;
       clearTimeout(idle);
       idle = window.setTimeout(() => {

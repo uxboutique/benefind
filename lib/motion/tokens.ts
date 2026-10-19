@@ -12,7 +12,6 @@ export const motion = {
   /** One-shot reveal trigger (ICON values). */
   observer: { rootMargin: "0px 0px -12% 0px", threshold: 0.01 },
   /** Lenis smooth wheel (desktop only): duration in seconds; anchors land below the sticky header. */
-  smoothScroll: { duration: 1.15 },
   /** Header hides only after this scroll depth (px). */
   headerHideAfter: 400,
 } as const;

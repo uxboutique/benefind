@@ -102,7 +102,8 @@ export const markets = {
       bgInset: "-36px -8px -32px -36px",
       photo: { src: asset("/assets/images/markets-slide2-photo.png"), alt: "" },
       photoBox: { left: "-7.45%", top: "-56.36%", width: "111.92%", height: "196.82%" },
-      cta: { label: "Primary CTA", href: "#" },
+      // AI lives under Enabling Technologies; Integration Platforms is the only designed page there.
+      cta: { label: "Primary CTA", href: routes.integrationPlatforms },
     },
   ],
 };
