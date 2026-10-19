@@ -19,7 +19,8 @@ export function MotionRoot() {
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
-          if (e.isIntersecting) {
+          // Also reveal anything already scrolled past (fast flings / jumps can skip the intersection).
+          if (e.isIntersecting || e.boundingClientRect.bottom < 0) {
             e.target.classList.add("is-in");
             io.unobserve(e.target);
           }

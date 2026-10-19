@@ -1,4 +1,5 @@
 .link {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -35,4 +36,11 @@
   :global(a:hover) .icon {
     transform: translateX(3px);
   }
+}
+
+/* 44px touch target (Apple HIG) without changing the 21px layout box */
+a.link::before {
+  content: "";
+  position: absolute;
+  inset: -12px -8px;
 }

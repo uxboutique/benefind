@@ -44,3 +44,23 @@
   `href="#"`, so clicking it jumped the page to the top. It now opens Integration Platforms (the only designed
   Enabling page), and the Pharma slide opens Pharma. Site-wide, every placeholder link (`href="#"`) is now
   inert (`components/motion/PlaceholderLinks.tsx`) instead of scrolling to the top.
+
+## 2026-10-19 (mobile): menu, accordion, mobile audit
+- **Mobile menu** (Figma 156:8062 / open 156:8163): an accordion with one section open at a time. The Lucide +
+  morphs into − as the vertical bar collapses. Height animates via a `grid-template-rows` 0fr → 1fr transition
+  (480 ms, apple.com easing `cubic-bezier(0.28, 0.11, 0.32, 1)`, new token `--ease-apple`). Links fade in with
+  a 30 ms stagger and the feature card follows at +220 ms. Below the sections: Gruppo Benefind / Careers / Innovation,
+  then English | Cerca. Figma frame 156:8163 has no keyframes, so the animation follows the open/closed states
+  with Apple timings.
+- **Mobile tokens** (393 Figma frame): 16px margins, 77px header (logo 146 × 44), compact CTA, and search moved
+  into the menu.
+- **Footer**: below 768px the columns become Apple-style accordions (44px rows, rotating chevron).
+- **Fixes from the audit**:
+  - No label below 12px.
+  - "Scopri"-style links get a 44px touch area.
+  - The breadcrumb stays on one horizontally scrollable line; it previously wrapped with an orphan separator.
+  - Reveal elements skipped by a fast fling are revealed anyway.
+- **Verified**:
+  - No horizontal overflow on the 5 pages at 390.
+  - axe 0 violations on 5 pages at 1440 and 390; motion suite green with CLS 0.
+  - Desktop positions unchanged (±17px).

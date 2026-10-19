@@ -64,6 +64,8 @@
 
   /* ---- Motion (mirrored in lib/motion/tokens.ts) ---- */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* apple.com accordions / flyouts */
+  --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
   --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-ui: 200ms;
   --dur-reveal: 700ms;
@@ -90,10 +92,11 @@
   }
 }
 
+/* Figma mobile (393): 16px margins, 77px header (logo 44 at 16/16) */
 @media (max-width: 767px) {
   :root {
-    --gutter: 20px;
-    --space-section: 56px;
-    --header-h: 64px;
+    --gutter: 16px;
+    --space-section: 64px;
+    --header-h: 77px;
   }
 }

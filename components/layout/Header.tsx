@@ -15,8 +15,6 @@ const MENU_CLOSE_MS = 400;
 const MEGA_OPEN_DELAY = 90; // hover intent
 const MEGA_CLOSE_DELAY = 220;
 
-const markets = primaryNav.find((n) => n.kind === "list" && n.id === "markets") as Extract<(typeof primaryNav)[number], { kind: "list" }>;
-
 /** Primary-nav item matching the current route (underlined in the header). */
 function sectionFor(pathname: string | null) {
   if (!pathname) return null;
@@ -34,6 +32,7 @@ export function Header() {
   const megaTimer = useRef(0);
   const pathname = usePathname();
   const currentSection = sectionFor(pathname);
+  const [accOpen, setAccOpen] = useState<string | null>(null); // mobile accordion section
   const [util, setUtil] = useState(false); // desktop hamburger dropdown (Figma 147:7973)
   const utilId = useId();
   const utilRef = useRef<HTMLDivElement>(null);
@@ -97,14 +96,17 @@ export function Header() {
       panel.hidden = false;
       raf = requestAnimationFrame(() => {
         panel.classList.add(styles.isOpen);
-        panel.querySelector<HTMLElement>("a")?.focus({ preventScroll: true });
+        panel.querySelector<HTMLElement>("button, a")?.focus({ preventScroll: true });
       });
       root.classList.add("no-scroll");
       outside.forEach((el) => el?.setAttribute("inert", ""));
     } else {
       panel.classList.remove(styles.isOpen);
       timer = window.setTimeout(() => {
-        if (!panel.classList.contains(styles.isOpen)) panel.hidden = true;
+        if (!panel.classList.contains(styles.isOpen)) {
+          panel.hidden = true;
+          setAccOpen(null);
+        }
       }, MENU_CLOSE_MS);
       root.classList.remove("no-scroll");
       outside.forEach((el) => el?.removeAttribute("inert"));
@@ -306,38 +308,72 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile / burger panel — not designed in Figma; minimal styling from page tokens (flagged in report). */}
+      {/* Mobile menu (Figma "Menu - Mobile" 156:8062, open state 156:8163): one accordion section open at a time. */}
       <div ref={panelRef} id={panelId} className={styles.panel} hidden>
-        <div className={`container ${styles.panelInner}`}>
-          <nav aria-label="Menu">
-            <ul className={styles.panelPrimary}>
-              {primaryNav.map((item) => (
-                <li key={item.id}>
-                  <Link href={item.href} onClick={() => close(false)}>
-                    {item.label}
-                  </Link>
+        <nav className={styles.panelInner} aria-label="Menu">
+          <ul className={styles.acc}>
+            {primaryNav.map((item, i) => {
+              const isOpen = accOpen === item.id;
+              const regionId = `${panelId}-${item.id}`;
+              const links = item.kind === "list" ? item.links : item.products.map((p) => ({ label: p.name, href: p.href }));
+              return (
+                <li key={item.id} className={styles.accItem} data-open={isOpen ? "" : undefined} style={{ "--i": i } as React.CSSProperties}>
+                  <button
+                    type="button"
+                    className={styles.accHead}
+                    aria-expanded={isOpen}
+                    aria-controls={regionId}
+                    onClick={() => setAccOpen(isOpen ? null : item.id)}
+                  >
+                    <span>{item.label}</span>
+                    <span className={styles.accIcon} aria-hidden="true" />
+                  </button>
+                  <div id={regionId} className={styles.accBody} role="region" aria-label={item.label} inert={!isOpen ? true : undefined}>
+                    <div className={styles.accInner}>
+                      <ul className={styles.accLinks}>
+                        {links.map((l, j) => (
+                          <li key={l.label} style={{ "--j": j } as React.CSSProperties}>
+                            <Link href={l.href} onClick={() => close(false)}>
+                              {l.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                      {item.kind === "list" && (
+                        <Link href={item.feature.href} className={styles.accFeature} onClick={() => close(false)}>
+                          <Image src={item.feature.image} alt="" fill sizes="(max-width: 767px) 100vw, 640px" className={styles.accFeatureImg} />
+                          <span className={styles.accFeatureShade} style={{ backgroundImage: item.feature.overlay }} />
+                          <span className={styles.accFeatureTitle}>{item.feature.title}</span>
+                          {/* eslint-disable-next-line @next/next/no-img-element -- 24px Lucide icon from Figma */}
+                          <img src={asset("/assets/icons/move-right-white.svg")} width={24} height={24} alt="" aria-hidden="true" />
+                        </Link>
+                      )}
+                    </div>
+                  </div>
                 </li>
-              ))}
-              <li>
-                <Link href={contactHref} onClick={() => close(false)}>
-                  Contattaci
-                </Link>
+              );
+            })}
+          </ul>
+          <ul className={styles.panelUtil}>
+            {utilityMenu.links.map((l) => (
+              <li key={l.label}>
+                <a href={l.href} onClick={() => close(false)}>
+                  {l.label}
+                </a>
               </li>
-            </ul>
-          </nav>
-          <div className={styles.panelSecondary}>
-            <p className={styles.panelHead}>{markets.label}</p>
-            <ul>
-              {markets.links.map((l) => (
-                <li key={l.label}>
-                  <Link href={l.href} onClick={() => close(false)}>
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            ))}
+          </ul>
+          <div className={styles.panelBoxes}>
+            <a href={utilityMenu.language.href} hrefLang={utilityMenu.language.lang} lang={utilityMenu.language.lang}>
+              {utilityMenu.language.label}
+            </a>
+            <a href="#">
+              {/* eslint-disable-next-line @next/next/no-img-element -- 20px SVG icon from Figma */}
+              <img src={asset("/assets/icons/icon-search.svg")} width={20} height={20} alt="" aria-hidden="true" />
+              Cerca
+            </a>
           </div>
-        </div>
+        </nav>
       </div>
     </header>
   );

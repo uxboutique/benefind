@@ -131,6 +131,25 @@
   font-size: 16px;
 }
 
+@media (max-width: 767px) {
+  .crumbs {
+    margin-inline: calc(-1 * var(--gutter));
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .crumbs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .crumbs ol {
+    flex-wrap: nowrap;
+    width: max-content;
+    padding-inline: var(--gutter);
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 1023px) {
   .grid {
     grid-template-columns: 1fr;

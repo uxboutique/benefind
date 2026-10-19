@@ -198,71 +198,19 @@
 }
 
 /* ---- Menu panel ---- */
+/* ---- Mobile menu (Figma 156:8062 / 156:8163): full-height sheet under the header bar ---- */
 .panel {
   position: absolute;
   inset: 100% 0 auto;
   height: calc(100svh - var(--header-h));
   overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--c-white);
-  border-top: 1px solid var(--c-lilac-100);
-}
-
-.panelInner {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 48px;
-  padding-block: 56px;
-}
-
-.panelPrimary {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.panelPrimary a {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: var(--fs-h3);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: var(--c-navy-900);
-}
-
-.panelSecondary ul {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 14px;
-}
-
-.panelSecondary a {
-  font-size: 15px;
-  color: var(--c-ink-600);
-}
-
-.panelHead {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--c-indigo-600);
-}
-
-@media (hover: hover) {
-  .panelPrimary a:hover,
-  .panelSecondary a:hover {
-    color: var(--c-indigo-600);
-  }
-}
-
-/* M13: closed → open toggled by JS one frame after `hidden` is removed; links stagger 40ms. */
-.panel {
   opacity: 0;
-  transform: translateY(-16px);
+  transform: translateY(-8px);
   transition:
-    opacity 400ms var(--ease-out),
-    transform 400ms var(--ease-out);
+    opacity 320ms var(--ease-apple),
+    transform 420ms var(--ease-apple);
 }
 
 .isOpen {
@@ -270,24 +218,227 @@
   transform: none;
 }
 
-.panel li {
-  opacity: 0;
-  transform: translateY(12px);
-  transition:
-    opacity 400ms var(--ease-out),
-    transform 400ms var(--ease-out);
+/* 16px side margins (Figma 393 frame), Apple-style generous bottom room above the home indicator */
+.panelInner {
+  display: flex;
+  flex-direction: column;
+  width: min(100% - 2 * var(--gutter), 640px);
+  margin-inline: auto;
+  padding: 16px 0 calc(48px + env(safe-area-inset-bottom));
 }
 
-.isOpen li {
+/* Accordion: row 32 tall, 16 above the 1px rule, 16 below it */
+.accItem {
+  border-bottom: 1px solid var(--c-lilac-100);
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 400ms var(--ease-apple),
+    transform 500ms var(--ease-apple);
+  transition-delay: calc(60ms + var(--i) * 40ms);
+}
+
+.accItem + .accItem {
+  margin-top: 16px;
+}
+
+.isOpen .accItem {
   opacity: 1;
   transform: none;
 }
 
-.isOpen .panelPrimary li:nth-child(2) { transition-delay: 40ms; }
-.isOpen .panelPrimary li:nth-child(3) { transition-delay: 80ms; }
-.isOpen .panelPrimary li:nth-child(4) { transition-delay: 120ms; }
-.isOpen .panelPrimary li:nth-child(5) { transition-delay: 160ms; }
-.isOpen .panelSecondary li { transition-delay: 200ms; }
+.accHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 32px;
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: normal;
+  text-align: left;
+  color: var(--c-navy-900);
+}
+
+/* Lucide plus → minus (32px, 1.5px strokes): the vertical bar collapses */
+.accIcon {
+  position: relative;
+  flex: none;
+  width: 32px;
+  height: 32px;
+}
+
+.accIcon::before,
+.accIcon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 21.3px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: var(--c-navy-900);
+  translate: -50% -50%;
+  transition: transform 420ms var(--ease-apple);
+}
+
+.accIcon::after {
+  transform: rotate(90deg);
+}
+
+.accItem[data-open] .accIcon::after {
+  transform: rotate(0deg) scaleX(0);
+}
+
+/* Height animates with the 0fr → 1fr grid-row trick (no measuring) */
+.accBody {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 480ms var(--ease-apple);
+}
+
+.accItem[data-open] .accBody {
+  grid-template-rows: 1fr;
+}
+
+.accInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Open content: list 16px below the row (Figma 125 → 157 incl. rule gap), gap 24, card 24 below, 32 to the rule */
+.accLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 16px;
+}
+
+.accLinks li {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 250ms var(--ease-apple),
+    transform 350ms var(--ease-apple);
+}
+
+.accItem[data-open] .accLinks li {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(120ms + var(--j) * 30ms);
+}
+
+.accLinks a {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--c-ink-600);
+}
+
+.accFeature {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  height: 193px;
+  margin: 24px 0 32px;
+  padding: 0 19px 16px 16px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: #d0d0d0;
+  color: var(--c-white);
+  opacity: 0;
+  transform: scale(0.98);
+  transition:
+    opacity 300ms var(--ease-apple),
+    transform 500ms var(--ease-apple);
+}
+
+.accItem[data-open] .accFeature {
+  opacity: 1;
+  transform: none;
+  transition-delay: 220ms;
+}
+
+.accFeatureImg {
+  z-index: -2;
+  object-fit: cover;
+}
+
+.accFeatureShade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.accFeatureTitle {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.08;
+  letter-spacing: -0.6px;
+}
+
+/* Products (no feature card): 32 below the list */
+.accLinks:last-child {
+  padding-bottom: 32px;
+}
+
+/* Secondary links: 32 below the last rule, gap 24, Medium 16 */
+.panelUtil {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.panelUtil a {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--c-ink-600);
+}
+
+/* English / Cerca: two 57px cells with a 1px lilac grid */
+.panelBoxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 32px;
+  border: 1px solid var(--c-lilac-100);
+}
+
+.panelBoxes a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 55px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--c-navy-900);
+}
+
+.panelBoxes a + a {
+  border-left: 1px solid var(--c-lilac-100);
+}
+
+@media (hover: hover) {
+  .accLinks a:hover,
+  .panelUtil a:hover {
+    color: var(--c-navy-900);
+  }
+}
+
+.accHead:active,
+.accLinks a:active,
+.panelUtil a:active,
+.panelBoxes a:active {
+  opacity: 0.6;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .header {
@@ -295,9 +446,14 @@
   }
 
   .panel,
-  .panel li {
-    transform: none;
-    transition: opacity 150ms linear;
+  .accItem,
+  .accLinks li,
+  .accFeature,
+  .accIcon::before,
+  .accIcon::after,
+  .accBody {
+    transform: none !important;
+    transition-duration: 0ms !important;
     transition-delay: 0ms !important;
   }
 }
@@ -313,15 +469,19 @@
   }
 }
 
+/* Figma mobile header (393): logo 146 × 44 at 16/16, CTA S compact (7/12), menu icon, no search */
 @media (max-width: 767px) {
-  .panelInner {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding-block: 32px;
+  .logo img {
+    width: 146px;
   }
 
-  .logo img {
-    width: 120px;
+  .cta {
+    height: 34px;
+    padding: 7px 12px;
+  }
+
+  .utility > a[aria-label="Cerca"] {
+    display: none;
   }
 }
 
