@@ -90,6 +90,47 @@
   color: var(--c-ink-600);
 }
 
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Products (Figma 143:4468): logo 200 × 57 at y165, subtitle 24 below (369 wide), text + CTA at x820 */
+.product .grid {
+  margin-top: 36px;
+}
+
+.logoTitle img {
+  display: block;
+  width: 200px;
+  height: auto;
+}
+
+.product .subtitle {
+  max-width: 369px;
+  margin-top: 24px;
+  font-size: 16px;
+}
+
+.product .body {
+  font-size: 16px;
+}
+
+/* Services (Figma 147:7262): single column, title up to 832, subtitle 16 below */
+.solo .grid {
+  grid-template-columns: minmax(0, 832px);
+}
+
+.solo .title {
+  margin-top: 16px;
+}
+
+.solo .subtitle {
+  margin-top: 16px;
+  font-size: 16px;
+}
+
 @media (max-width: 1023px) {
   .grid {
     grid-template-columns: 1fr;

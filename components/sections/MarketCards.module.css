@@ -82,13 +82,26 @@
   white-space: nowrap;
 }
 
+/* Title + link only (Figma Services 147:7502): panel anchored 32 from the bottom, title may wrap */
+.card[data-short] .panel {
+  top: auto;
+  bottom: 32px;
+  width: fit-content;
+  max-width: min(300px, 100% - 48px);
+}
+
+.card[data-short] .title {
+  white-space: normal;
+}
+
 .text {
   font-size: 15px;
   line-height: 1.55;
+  white-space: pre-line;
 }
 
 .controls {
-  margin-top: 32px;
+  margin-top: 24px;
 }
 
 @media (hover: hover) {

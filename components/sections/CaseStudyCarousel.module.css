@@ -81,6 +81,8 @@
   font-size: var(--fs-h3);
   line-height: 1.2;
   letter-spacing: var(--ls-display);
+  /* Figma: 410-wide text box (3 lines at 1440) */
+  max-width: 410px;
 }
 
 .left > div {
@@ -149,18 +151,9 @@
   line-height: 20px;
 }
 
+/* Figma: controls sit 24px below the slider, aligned to the container */
 .controlsWrap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 37px;
-  padding-left: 50px;
-  pointer-events: none;
-}
-
-.controls {
-  pointer-events: auto;
-  width: max-content;
+  margin-top: 24px;
 }
 
 @media (max-width: 1279px) {
@@ -204,15 +197,5 @@
   .statLabel {
     width: auto;
     max-width: 189px;
-  }
-
-  .controlsWrap {
-    position: static;
-    margin-top: 16px;
-    padding-left: 0;
-  }
-
-  .controlsWrap .controls button {
-    background: var(--c-navy-900);
   }
 }

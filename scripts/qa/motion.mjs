@@ -128,7 +128,7 @@ const opacity = (page, sel) => page.evaluate((s) => { const el = document.queryS
   await page.waitForTimeout(600);
   log("menu after Esc: expanded / panel hidden / focus", await page.evaluate(() => [
     document.querySelector("button[aria-controls][aria-label$=\"menu\"]").getAttribute("aria-expanded"),
-    document.getElementById(document.querySelector("button[aria-controls][aria-label$=\"menu\"]").getAttribute("aria-controls")).hidden,
+    document.getElementById(document.querySelector("button[aria-controls][aria-label$=\"menu\"]").getAttribute("aria-controls").split(" ").pop()).hidden,
     document.activeElement?.getAttribute("aria-label"),
   ]));
   await ctx.close();

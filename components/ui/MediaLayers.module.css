@@ -1,0 +1,49 @@
+.stack {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+}
+
+.img {
+  object-fit: cover;
+}
+
+.screen {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  background: var(--c-white);
+  font-weight: 500;
+  line-height: 1.35;
+  color: #bcbcbc;
+}
+
+.screen::after {
+  content: "Screen da inserire";
+}
+
+/* 401 × 428 centred in the 580 square, radius 16, Geist Medium 18 */
+.large {
+  left: 50%;
+  top: 50%;
+  width: 69.14%;
+  height: 73.79%;
+  translate: -50% -50%;
+  border-radius: var(--r-lg);
+  font-size: 18px;
+}
+
+/* 179 × 191 at 31 / 39 in the 240 × 200 thumbnail (bleeds below), radius 7, 14px */
+.small {
+  left: 12.92%;
+  top: 19.5%;
+  width: 74.56%;
+  height: 95.5%;
+  border-radius: 7px;
+  font-size: 14px;
+}

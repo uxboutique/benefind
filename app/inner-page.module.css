@@ -1,0 +1,107 @@
+/*
+ * Vertical rhythm shared by the inner templates (Figma y, 1440 frames):
+ * Enabling 142:3675 · Products 143:4468 · Services 147:6684 (Pharma keeps its own module).
+ */
+
+/* intro → first media: 56 (Enabling, Products) / 48 (Services) */
+.afterIntro {
+  margin-top: 56px;
+}
+
+.afterIntroShort {
+  margin-top: 48px;
+}
+
+/* standard gap between blocks: 80 */
+.block {
+  padding-top: 80px;
+}
+
+/* Products: compliance banner → "Le funzionalità" 60 */
+.blockTight {
+  padding-top: 60px;
+}
+
+/* Services: slider controls end → next intro 101 */
+.blockAfterSlider {
+  padding-top: 101px;
+}
+
+/* SplitIntro → card slider 34 */
+.slider {
+  margin-top: 34px;
+}
+
+/* SplitIntro → case-study slider 42 */
+.casesSlider {
+  margin-top: 42px;
+}
+
+/* 1px divider (Figma "Line 7"), 80 above */
+.rule {
+  margin-top: 80px;
+}
+
+.rule::before {
+  content: "";
+  display: block;
+  height: 1px;
+  background: var(--line-on-light);
+}
+
+/* Contact headline 172 below the slider controls (Contact has 131 top padding) */
+.contact {
+  margin-top: 41px;
+}
+
+/* Enabling: 145 */
+.contactTight {
+  margin-top: 14px;
+}
+
+/* Services offer: heading 64 below the banner, cards 24 below the heading */
+.offer {
+  padding-top: 64px;
+}
+
+.offerTitle {
+  max-width: 1262px;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-h2);
+  line-height: 1.08;
+  letter-spacing: var(--ls-display);
+  color: var(--c-navy-900);
+}
+
+.offerCards {
+  margin-top: 24px;
+}
+
+@media (max-width: 1023px) {
+  .block,
+  .blockTight,
+  .blockAfterSlider,
+  .offer {
+    padding-top: var(--space-section);
+  }
+
+  .rule {
+    margin-top: var(--space-section);
+  }
+
+  .afterIntro,
+  .afterIntroShort {
+    margin-top: 40px;
+  }
+
+  .slider,
+  .casesSlider {
+    margin-top: 32px;
+  }
+
+  .contact,
+  .contactTight {
+    margin-top: 0;
+  }
+}

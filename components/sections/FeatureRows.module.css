@@ -1,0 +1,93 @@
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+/* 700 (copy) + 580 (media) = 1280 */
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 700fr) minmax(0, 580fr);
+  align-items: center;
+}
+
+.reverse {
+  grid-template-columns: minmax(0, 580fr) minmax(0, 700fr);
+}
+
+.reverse .copyCol {
+  order: 2;
+}
+
+.copyCol {
+  display: grid;
+  place-items: center;
+  padding-inline: 24px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: min(541px, 100%);
+}
+
+.eyebrow {
+  font-size: 16px;
+  line-height: normal;
+  color: var(--c-ink-600);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-h2);
+  line-height: 1.08;
+  letter-spacing: var(--ls-display);
+  color: var(--c-navy-900);
+}
+
+.text {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--c-ink-600);
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.mediaInner {
+  position: absolute;
+  inset: 0;
+}
+
+@media (max-width: 1023px) {
+  .rows {
+    gap: 56px;
+  }
+
+  .row,
+  .reverse {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .reverse .copyCol {
+    order: 0;
+  }
+
+  .copyCol {
+    place-items: start;
+    padding-inline: 0;
+  }
+
+  .copy {
+    width: 100%;
+    max-width: 640px;
+  }
+}

@@ -64,7 +64,7 @@ export function CaseStudyCarousel({ label, slides }: { label: string; slides: Sl
         ))}
       </div>
       <div className={`container ${styles.controlsWrap}`}>
-        <CarouselControls variant="glass" label={`Navigazione ${label.toLowerCase()}`} className={styles.controls} canPrev={canPrev} canNext={canNext} onPrev={prev} onNext={next} />
+        <CarouselControls label={`Navigazione ${label.toLowerCase()}`} canPrev={canPrev} canNext={canNext} onPrev={prev} onNext={next} />
       </div>
     </div>
   );

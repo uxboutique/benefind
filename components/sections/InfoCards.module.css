@@ -1,0 +1,125 @@
+/* Card: media 360 tall (radius 16) → 24 → title 18 Medium navy → 8 → text 16/24 → 16 → Link M */
+.card {
+  min-width: 0;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+.media {
+  position: relative;
+  height: 360px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.mediaInner {
+  position: absolute;
+  inset: 0;
+  transition: transform 700ms var(--ease-out);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--c-navy-900);
+}
+
+.text {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--c-ink-600);
+}
+
+.more {
+  margin-top: 16px;
+}
+
+@media (hover: hover) {
+  .link:hover .mediaInner {
+    transform: scale(1.03);
+  }
+}
+
+/* ---- Grid (Services): 3 × 410.67, gap 24 ---- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* ---- Carousel (Enabling): 360 cards, gap 24, controls 48 below ---- */
+.slider {
+  container-type: inline-size;
+}
+
+.track {
+  display: flex;
+  gap: 24px;
+  padding-inline: max(var(--gutter), (100cqw - var(--container)) / 2);
+  scroll-padding-inline: max(var(--gutter), (100cqw - var(--container)) / 2);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.track[data-dragging] {
+  cursor: grabbing;
+}
+
+.track:focus-visible {
+  outline-offset: -3px;
+}
+
+.slide {
+  flex: none;
+  width: min(360px, 100cqw - 2 * var(--gutter) - 24px);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.controls {
+  margin-top: 48px;
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .media {
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .controls {
+    margin-top: 32px;
+  }
+}

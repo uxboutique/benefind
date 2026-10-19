@@ -1,0 +1,63 @@
+.card {
+  position: relative;
+  aspect-ratio: 1280 / 624;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Frame 1098 × 620 at 89.8 / 72.1 (Figma), 9px outline rgba(255,255,255,.26) */
+.frame {
+  position: absolute;
+  left: 7.02%;
+  top: 11.55%;
+  width: 85.78%;
+  aspect-ratio: 1098 / 620;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--c-white);
+  box-shadow: 0 0 0 9px rgba(255, 255, 255, 0.26);
+}
+
+/* Screenshot 1225 × 919 at −67 / −74 inside the frame */
+.shot {
+  position: absolute;
+  left: -6.1%;
+  top: -11.94%;
+  width: 111.57%;
+  height: 148.23%;
+}
+
+.img {
+  object-fit: cover;
+}
+
+/* #f6f6f6 118 × 36 at 13 / 11 hides the screenshot's demo brand */
+.mask {
+  position: absolute;
+  left: 1.18%;
+  top: 1.77%;
+  width: 10.75%;
+  height: 5.81%;
+  background: #f6f6f6;
+}
+
+/* Logo 129 × 37 at 21 / 16 */
+.logo {
+  position: absolute;
+  left: 1.91%;
+  top: 2.58%;
+  width: 11.76%;
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  .card {
+    aspect-ratio: 4 / 3;
+  }
+
+  .frame {
+    left: 6%;
+    width: 140%;
+  }
+}

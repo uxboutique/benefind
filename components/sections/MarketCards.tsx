@@ -8,7 +8,8 @@ import styles from "./MarketCards.module.css";
 
 type Card = {
   title: string;
-  text: string;
+  /** Omitted on Services "Altri servizi" (title + link only). */
+  text?: string;
   href: string;
   photo: string | null;
   photoBox: { left: string; top: string; width: string; height: string } | null;
@@ -28,6 +29,7 @@ export function MarketCards({ label, cards, fallbackImage }: { label: string; ca
             aria-roledescription="slide"
             aria-label={`${i + 1} di ${cards.length}: ${c.title}`}
             data-reveal=""
+            data-short={c.text ? undefined : ""}
             style={{ "--d": `${Math.min(i, 3) * 80}ms` } as React.CSSProperties}
           >
             <div className={styles.media}>
@@ -40,7 +42,7 @@ export function MarketCards({ label, cards, fallbackImage }: { label: string; ca
             </div>
             <div className={styles.panel}>
               <h3 className={styles.title}>{c.title}</h3>
-              <p className={styles.text}>{c.text}</p>
+              {c.text && <p className={styles.text}>{c.text}</p>}
               <TextLink href={c.href} tone="on-dark" size="m">
                 Scopri
               </TextLink>
@@ -49,7 +51,7 @@ export function MarketCards({ label, cards, fallbackImage }: { label: string; ca
         ))}
       </div>
       <div className="container">
-        <CarouselControls variant="solid" label={`Navigazione ${label.toLowerCase()}`} className={styles.controls} canPrev={canPrev} canNext={canNext} onPrev={prev} onNext={next} />
+        <CarouselControls label={`Navigazione ${label.toLowerCase()}`} className={styles.controls} canPrev={canPrev} canNext={canNext} onPrev={prev} onNext={next} />
       </div>
     </div>
   );

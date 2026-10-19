@@ -2,23 +2,23 @@
   "entrance [ms, h1 line, cta]": [
     [
       150,
-      0.340921,
+      0.238795,
       0
     ],
     [
       400,
-      0.902837,
-      0.685904
+      0.887528,
+      0
     ],
     [
       700,
-      0.992255,
-      0.885078
+      0.995022,
+      0.980875
     ],
     [
       1000,
       1,
-      0.998023
+      0.998607
     ],
     [
       1300,
@@ -93,7 +93,7 @@
   "CLS (full scroll)": 0,
   "console errors/warnings": [],
   "markets active after next": 1,
-  "markets active after ArrowRight": 2,
+  "markets active after ArrowRight": 1,
   "next disabled at end": true,
   "menu open: expanded / focus / scroll lock / main inert": [
     "true",

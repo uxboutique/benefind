@@ -6,6 +6,7 @@ import { CarouselControls } from "@/components/ui/CarouselControls";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { markets } from "@/content/home";
 import { useCarousel } from "@/hooks/useCarousel";
+import { asset } from "@/lib/asset";
 import styles from "./Markets.module.css";
 
 export function Markets() {
@@ -35,24 +36,34 @@ export function Markets() {
               data-active={i === active ? "" : undefined}
               inert={i !== active ? true : undefined}
             >
-              <div className={styles.bg} aria-hidden="true">
+              <div className={styles.bg} style={{ inset: s.bgInset }} aria-hidden="true">
                 <Image src={s.bg} alt="" fill sizes="(min-width: 1280px) 1324px, 100vw" className={styles.bgImg} />
               </div>
               <div className={styles.left}>
                 <p className={styles.eyebrow}>{s.eyebrow}</p>
-                <h3 className={styles.title}>{s.title}</h3>
-                <div>
+                <h3 className={styles.title}>
+                  {(s.titleLines ?? [s.title]).map((l, j) => (
+                    <span key={j} className={styles.titleLine}>
+                      {l}{" "}
+                    </span>
+                  ))}
+                </h3>
+                <ul className={styles.bullets}>
+                  {s.bullets.map((b, j) => (
+                    <li key={j}>
+                      {/* eslint-disable-next-line @next/next/no-img-element -- 20px Lucide icon from Figma */}
+                      <img src={asset("/assets/icons/lucide/circle-check-white.svg")} width={20} height={20} alt="" aria-hidden="true" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className={styles.cta}>
                   <Button href={s.cta.href} variant="white">
                     {s.cta.label}
                   </Button>
                 </div>
               </div>
               <div className={styles.right}>
-                <p className={styles.lead}>
-                  {s.lead[0]}
-                  <br />
-                  {s.lead[1]}
-                </p>
                 <div className={styles.photo} data-media="">
                   <div className={styles.photoInner} data-media-inner="">
                     {/* Image box copied from Figma (crop/offset inside the 738×346 frame). */}
@@ -66,7 +77,7 @@ export function Markets() {
           ))}
         </div>
         <div className={`container ${styles.controlsWrap}`}>
-          <CarouselControls variant="glass" label="Navigazione mercati" className={styles.controls} canPrev={canPrev} canNext={canNext} onPrev={prev} onNext={next} />
+          <CarouselControls label="Navigazione mercati" canPrev={canPrev} canNext={canNext} onPrev={prev} onNext={next} />
         </div>
       </div>
     </section>

@@ -5,6 +5,7 @@
  */
 
 import { asset } from "@/lib/asset";
+import { routes } from "@/lib/routes";
 
 export type Link = { label: string; href: string };
 
@@ -70,35 +71,37 @@ export const markets = {
     "Benefind opera nei principali settori di mercato, offrendo soluzioni tecnologiche avanzate e servizi su misura per la trasformazione digitale.",
     "Dall'Industria Manifatturiera all'Industria Farmaceutica, dal Fashion & Luxury ai Concessionari Autostradali, fino alla Sanità, Pubblica Amministrazione e Financial Services, supportiamo le aziende nell’ottimizzazione dei processi e nell’integrazione di tecnologie innovative.",
   ],
+  // Figma 97:4865 (updated 2026-10-19): two slides, check-list on the left, photo on the right.
   slides: [
     {
       eyebrow: "Mercati e soluzioni digitali",
       title: "Pharma",
-      lead: ["Processi MES avanzati per garantire soluzioni integrate ai sistemi esistenti", "Sistema MES - Manufacturing Execution System."],
+      bullets: [
+        "Processi MES avanzati per garantire soluzioni integrate ai sistemi esistenti",
+        // Repeated three times in Figma (placeholder copy).
+        "Sistema MES - Manufacturing Execution System.",
+        "Sistema MES - Manufacturing Execution System.",
+        "Sistema MES - Manufacturing Execution System.",
+      ],
       bg: asset("/assets/images/markets-slide1-bg.png"),
-      // Figma 98:4884 (added 2026-10-15) covers the older building photo in this slide.
+      // Figma: 1324×588 at −22/−34
+      bgInset: "-34px -22px",
+      // Figma 98:4884 covers the older building photo in this slide.
       photo: { src: asset("/assets/images/markets-slide1-portrait.jpg"), alt: "" },
       // Figma: 772×502 image box at −23/−34 inside the 738×346 frame.
       photoBox: { left: "-3.12%", top: "-9.83%", width: "104.61%", height: "145.09%" },
-      cta: { label: "Primary CTA", href: "#" },
+      cta: { label: "Primary CTA", href: routes.pharma },
     },
     {
       eyebrow: "Mercati e soluzioni digitali",
       title: "Artificial Intelligence",
-      lead: ["Processi MES avanzati per garantire soluzioni integrate ai sistemi esistenti", "Sistema MES - Manufacturing Execution System."],
+      titleLines: ["Artificial", "Intelligence"],
+      bullets: ["Processi MES avanzati per garantire soluzioni integrate ai sistemi esistenti", "Sistema MES - Manufacturing Execution System."],
       bg: asset("/assets/images/markets-slide2-bg.png"),
+      // Figma: 1324×588 at −36/−36
+      bgInset: "-36px -8px -32px -36px",
       photo: { src: asset("/assets/images/markets-slide2-photo.png"), alt: "" },
       photoBox: { left: "-7.45%", top: "-56.36%", width: "111.92%", height: "196.82%" },
-      cta: { label: "Primary CTA", href: "#" },
-    },
-    {
-      // Figma slide 3: same copy as slide 1 (placeholder), still with the building photo.
-      eyebrow: "Mercati e soluzioni digitali",
-      title: "Pharma",
-      lead: ["Processi MES avanzati per garantire soluzioni integrate ai sistemi esistenti", "Sistema MES - Manufacturing Execution System."],
-      bg: asset("/assets/images/markets-slide1-bg.png"),
-      photo: { src: asset("/assets/images/markets-slide1-photo.png"), alt: "Edificio industriale con torre circolare in vetro" },
-      photoBox: { left: "-1.49%", top: "-10.12%", width: "102.98%", height: "180.92%" },
       cta: { label: "Primary CTA", href: "#" },
     },
   ],

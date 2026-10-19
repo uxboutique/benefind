@@ -40,7 +40,8 @@
   font-size: var(--fs-display-hero);
   line-height: 1.04;
   letter-spacing: var(--ls-display);
-  max-width: 951px;
+  /* Figma 51:4928: two authored lines in a 951 box; web Newsreader sets ~4% wider, so allow 1040 */
+  max-width: 1040px;
 }
 
 .line {

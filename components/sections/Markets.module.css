@@ -16,7 +16,8 @@
   flex-direction: column;
   gap: 24px;
   padding-top: 0;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 300;
   line-height: 24px;
   color: var(--c-ink-600);
 }
@@ -25,7 +26,7 @@
 .slider {
   position: relative;
   container-type: inline-size;
-  margin-top: 38px;
+  margin-top: 48px;
 }
 
 .track {
@@ -63,11 +64,11 @@
   isolation: isolate;
   flex: none;
   display: grid;
-  grid-template-columns: 413px 1px minmax(0, 1fr);
+  grid-template-columns: 423px minmax(0, 1fr);
   column-gap: 0;
   width: min(var(--container), 100cqw - 2 * var(--gutter));
   height: 520px;
-  padding: 35px 39px 37px 50px;
+  padding: 40px 39px 37px 40px;
   border-radius: var(--r-sm);
   overflow: hidden;
   background: var(--c-indigo-700);
@@ -76,10 +77,9 @@
   scroll-snap-stop: always; /* one slide per swipe */
 }
 
-/* Figma: bg image 1324×588 at −22/−34 */
+/* Figma: bg image 1324 × 588, offset per slide (inline inset) */
 .bg {
   position: absolute;
-  inset: -34px -22px;
   z-index: -1;
 }
 
@@ -87,14 +87,14 @@
   object-fit: cover;
 }
 
+/* Figma 142:3545: 405 wide, gap 24; CTA at y391; 1px divider at x463 */
 .left {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
-  padding-right: 24px;
+  gap: 24px;
+  padding-right: 18px;
   border-right: 1px solid rgba(255, 255, 255, 0.19);
-  grid-column: 1 / 3;
 }
 
 .eyebrow {
@@ -110,19 +110,44 @@
   letter-spacing: var(--ls-display);
 }
 
+.titleLine {
+  display: block;
+}
+
+/* Lucide circle-check 20 + gap 11, Geist Light 16/21 */
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 405px;
+}
+
+.bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 21px;
+}
+
+.bullets img {
+  flex: none;
+  margin-top: 0.5px;
+}
+
+.cta {
+  position: absolute;
+  left: 40px;
+  top: 391px;
+}
+
+/* Photo 738 × 346 at x503 / y137 */
 .right {
   display: flex;
   flex-direction: column;
-  gap: 26px;
-  padding: 8px 0 0 39px;
+  padding: 97px 0 0 40px;
   min-height: 0;
-}
-
-/* Figma: 745px nowrap text box in a 738px column (bleeds 7px into the right padding) */
-.lead {
-  margin-right: -10px;
-  font-size: var(--fs-lead);
-  line-height: 1.55;
 }
 
 .photo {
@@ -173,19 +198,9 @@
   }
 }
 
-/* Controls overlay the slide's bottom-left corner on desktop (Figma: 50/433). */
+/* Figma: controls sit 24px below the slider, aligned to the container */
 .controlsWrap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 37px;
-  padding-left: 50px;
-  pointer-events: none;
-}
-
-.controls {
-  pointer-events: auto;
-  width: max-content;
+  margin-top: 24px;
 }
 
 @media (max-width: 1023px) {
@@ -206,6 +221,10 @@
     padding-right: 0;
   }
 
+  .cta {
+    position: static;
+  }
+
   .right {
     padding: 0;
     gap: 20px;
@@ -214,16 +233,6 @@
   .photo {
     flex: none;
     aspect-ratio: 738 / 346;
-  }
-
-  .controlsWrap {
-    position: static;
-    margin-top: 16px;
-    padding-left: 0;
-  }
-
-  .controlsWrap .controls button {
-    background: var(--c-navy-900);
   }
 }
 

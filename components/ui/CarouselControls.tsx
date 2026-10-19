@@ -7,15 +7,18 @@ type Props = {
   canNext: boolean;
   onPrev: () => void;
   onNext: () => void;
-  /** Both are 50px circles with the Lucide arrow (Figma): "glass" = white 30% on imagery, "solid" = navy. */
-  variant: "glass" | "solid";
   className?: string;
 };
 
-export function CarouselControls({ label, canPrev, canNext, onPrev, onNext, variant, className }: Props) {
-  const icon = asset("/assets/icons/icon-arrow-left.svg");
+/**
+ * Prev/Next for every carousel (Figma "Controlli carousel", Homepage 142:259): two 50px circles,
+ * gap 8, navy Lucide arrow; enabled = surface/cyan-light, disabled = surface/lilac-100.
+ * Always placed 24px below the slider, aligned to the container.
+ */
+export function CarouselControls({ label, canPrev, canNext, onPrev, onNext, className }: Props) {
+  const icon = asset("/assets/icons/arrow-left-navy.svg");
   return (
-    <div className={[styles.controls, styles[variant], className].filter(Boolean).join(" ")} role="group" aria-label={label}>
+    <div className={[styles.controls, className].filter(Boolean).join(" ")} role="group" aria-label={label}>
       <button type="button" className={styles.btn} onClick={onPrev} disabled={!canPrev} aria-label="Precedente">
         {/* eslint-disable-next-line @next/next/no-img-element -- 24px Lucide icon from Figma */}
         <img src={icon} width={24} height={24} alt="" />

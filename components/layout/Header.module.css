@@ -93,6 +93,101 @@
   gap: 14px;
 }
 
+/* ---- Desktop hamburger dropdown: 334 wide, 14px below the header, right-aligned to the container ---- */
+.util {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: max(var(--gutter), (100% - var(--container)) / 2);
+  width: 334px;
+  opacity: 0;
+  transform: translateY(-8px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 260ms var(--ease-out),
+    transform 360ms var(--ease-out),
+    visibility 0s linear 360ms;
+}
+
+.util[data-open] {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 260ms var(--ease-out),
+    transform 360ms var(--ease-out),
+    visibility 0s;
+}
+
+.utilInner {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding: 18px 25px;
+  border: 1px solid var(--c-line-menu);
+  border-radius: var(--r-sm);
+  background: var(--c-white);
+  box-shadow: 0 12px 40px rgba(7, 6, 63, 0.08);
+}
+
+.utilTitle {
+  padding-top: 3px;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--c-ink-600);
+}
+
+.utilList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: -2px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid var(--c-line-menu);
+}
+
+.utilList a,
+.utilLang {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--c-navy-900);
+  transition: opacity var(--dur-ui) var(--ease-io);
+}
+
+.utilList:has(a:hover, a:focus-visible) a:not(:hover, :focus-visible) {
+  opacity: 0.5;
+}
+
+.utilList li {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 300ms var(--ease-out),
+    transform 400ms var(--ease-out);
+}
+
+.util[data-open] .utilList li {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(60ms + var(--i) * 25ms);
+}
+
+@media (max-width: 1023px) {
+  .util {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .util,
+  .util[data-open],
+  .utilList li {
+    transform: none !important;
+  }
+}
+
 .iconBtn {
   display: grid;
   place-items: center;

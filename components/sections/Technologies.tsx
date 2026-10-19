@@ -50,7 +50,7 @@ export function Technologies() {
           ))}
         </div>
         <div className="container">
-          <CarouselControls variant="solid" label="Navigazione tecnologie" className={styles.controls} canPrev={canPrev} canNext={canNext} onPrev={prev} onNext={next} />
+          <CarouselControls label="Navigazione tecnologie" className={styles.controls} canPrev={canPrev} canNext={canNext} onPrev={prev} onNext={next} />
         </div>
       </div>
     </section>

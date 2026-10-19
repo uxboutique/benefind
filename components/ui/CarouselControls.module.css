@@ -1,5 +1,7 @@
 .controls {
   display: flex;
+  gap: 8px;
+  width: max-content;
 }
 
 .btn {
@@ -8,13 +10,18 @@
   width: 50px;
   height: 50px;
   border-radius: var(--r-pill);
+  background: var(--c-sky-100);
   transition:
     background-color var(--dur-ui) var(--ease-io),
-    opacity var(--dur-ui) var(--ease-io);
+    transform var(--dur-ui) var(--ease-out);
+}
+
+.btn img {
+  transition: transform var(--dur-ui) var(--ease-out);
 }
 
 .btn:disabled {
-  opacity: 0.45;
+  background: var(--c-lilac-100);
   cursor: default;
 }
 
@@ -22,30 +29,20 @@
   transform: rotate(180deg);
 }
 
-/* Markets: translucent circles on the slide imagery, gap 16 */
-.glass {
-  gap: 16px;
-}
-
-.glass .btn {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-/* Technologies: navy circles, gap 8 */
-.solid {
-  gap: 8px;
-}
-
-.solid .btn {
-  background: var(--c-navy-900);
-}
-
 @media (hover: hover) {
-  .glass .btn:not(:disabled):hover {
-    background: rgba(255, 255, 255, 0.45);
+  .btn:not(:disabled):hover {
+    background: #c3d4f0;
   }
 
-  .solid .btn:not(:disabled):hover {
-    background: var(--c-indigo-800);
+  .btn:not(:disabled):hover img:not(.flip) {
+    transform: translateX(-2px);
   }
+
+  .btn:not(:disabled):hover .flip {
+    transform: rotate(180deg) translateX(-2px);
+  }
+}
+
+.btn:not(:disabled):active {
+  transform: scale(0.96);
 }

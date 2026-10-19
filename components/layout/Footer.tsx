@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { footer } from "@/content/home";
+import { hrefFor } from "@/lib/routes";
 import styles from "./Footer.module.css";
 
 function Column({ title, links }: { title: string; links: string[] }) {
@@ -6,13 +8,22 @@ function Column({ title, links }: { title: string; links: string[] }) {
     <nav className={styles.column} aria-label={title}>
       <p className={styles.head}>{title}</p>
       <ul>
-        {links.map((l) => (
-          <li key={l}>
-            <a href="#" className={styles.link}>
-              {l}
-            </a>
-          </li>
-        ))}
+        {links.map((l) => {
+          const href = hrefFor(l);
+          return (
+            <li key={l}>
+              {href === "#" ? (
+                <a href="#" className={styles.link}>
+                  {l}
+                </a>
+              ) : (
+                <Link href={href} className={styles.link}>
+                  {l}
+                </Link>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

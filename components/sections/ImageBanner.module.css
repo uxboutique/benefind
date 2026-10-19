@@ -62,6 +62,35 @@
   display: block;
 }
 
+.overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.strong {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* 540-wide copy, 16/24, paragraphs 24 apart (Figma 144:5058) */
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 540px;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: pre-line;
+}
+
+/* Photo only: 1408 × 620; image 1446 × 939 at −19 / −48 */
+.photoOnly .card {
+  min-height: 620px;
+}
+
+.photoOnly .parallax {
+  inset: -7.74% -1.35% -43.71%;
+}
+
 @media (max-width: 767px) {
   .section {
     padding-inline: var(--gutter);
@@ -70,6 +99,12 @@
   .card {
     min-height: 0;
     padding: 180px 16px 16px;
+  }
+
+  .photoOnly .card {
+    min-height: 0;
+    padding: 0;
+    aspect-ratio: 4 / 3;
   }
 
   .parallax {

@@ -1,10 +1,11 @@
-/* Figma 117:4134: 874 wide, centred, 8px below the header, white, 1px #dedede border, radius 8. */
+/* Figma: 8px below the header, white, 1px #dedede border, radius 8. Width per menu (874 / 677 / 708 / 1086);
+   Enabling and Services sit 62px right of centre. */
 .wrap {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
   right: 0;
-  width: min(874px, 100% - 2 * var(--gutter));
+  width: min(var(--panel-w, 874px), 100% - 2 * var(--gutter));
   margin-inline: auto;
   opacity: 0;
   transform: translateY(-8px);
@@ -27,6 +28,12 @@
     visibility 0s;
 }
 
+@media (min-width: 1280px) {
+  .wrap {
+    left: calc(var(--shift, 0px) * 2);
+  }
+}
+
 .panel {
   display: grid;
   grid-template-columns: 1fr;
@@ -38,10 +45,19 @@
   box-shadow: 0 12px 40px rgba(7, 6, 63, 0.08);
 }
 
-/* Figma: list column 492 (23 → 515), card 334 at x515, right padding 24 */
-.withFeature {
+/* List + feature card (334). Markets: list column 492, no gap; Enabling / Services: one column + 40 gap. */
+.listPanel {
   grid-template-columns: minmax(0, 1fr) 334px;
   gap: 0;
+}
+
+.single {
+  gap: 40px;
+  padding: 21px 24px 18px;
+}
+
+.single .listCol {
+  padding-top: 3px;
 }
 
 .listCol {
@@ -59,16 +75,17 @@
   color: var(--c-ink-600);
 }
 
-/* Two columns (Figma x 23 / 276 → 253px), rows 39px apart */
+/* Columns 253px apart (Figma x 23 / 276), rows 39px apart */
 .list {
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(var(--rows), auto);
-  grid-template-columns: 253px minmax(0, 1fr);
+  grid-template-columns: var(--col-w, 253px) minmax(0, 1fr);
   row-gap: 15px;
 }
 
-.list li {
+.list li,
+.tiles li {
   opacity: 0;
   transform: translateY(6px);
   transition:
@@ -76,16 +93,18 @@
     transform 400ms var(--ease-out);
 }
 
-.wrap[data-open] .list li {
+.wrap[data-open] .list li,
+.wrap[data-open] .tiles li {
   opacity: 1;
   transform: none;
   transition-delay: calc(60ms + var(--i) * 25ms);
 }
 
 .link {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  white-space: nowrap;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
@@ -95,7 +114,10 @@
     font-weight var(--dur-ui) var(--ease-io);
 }
 
+/* Out of flow so the hidden arrow never widens the link (Services labels fill the 284px column). */
 .arrow {
+  position: absolute;
+  left: calc(100% + 6px);
   opacity: 0;
   transform: translateX(-6px);
   transition:
@@ -119,15 +141,14 @@
   transform: none;
 }
 
-/* Feature card: 334 × 193, radius 8, image + bottom gradient, Newsreader Regular 20 */
+/* Feature card: 334 wide, full panel height, radius 8, image + Figma gradient, Newsreader Regular 20 */
 .feature {
   position: relative;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
-  height: 193px;
-  margin-top: 1px;
+  min-height: 183px;
   padding: 0 16px 17px;
   border-radius: var(--r-sm);
   overflow: hidden;
@@ -138,21 +159,24 @@
 
 .featureMedia {
   position: absolute;
-  inset: -12px -22px;
+  inset: 0;
   z-index: -1;
+  overflow: hidden;
   transform: scale(1.06);
   transition: transform 900ms var(--ease-out);
+}
+
+.featureImgBox {
+  position: absolute;
 }
 
 .wrap[data-open] .featureMedia {
   transform: none;
 }
 
-.featureMedia::after {
-  content: "";
+.featureOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
 }
 
 .featureImg {
@@ -189,11 +213,95 @@
   }
 
   .list li,
+  .tiles li,
   .featureMedia {
     transform: none !important;
   }
 
   .arrow {
     transform: none;
+  }
+}
+
+/* ---- Products (Figma 144:5362): 4 × 239 tiles, gap 24, mist-50, radius 8 ---- */
+.productsPanel {
+  gap: 27px;
+  padding: 24px 23px 35px;
+}
+
+.productsPanel .title {
+  align-self: start;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 208px;
+  padding: 24px 16px;
+  border-radius: var(--r-sm);
+  background: var(--c-mist-50);
+  box-shadow: inset 0 0 0 0 var(--c-navy-900);
+  transition: box-shadow var(--dur-ui) var(--ease-io);
+}
+
+.tileLogo {
+  display: flex;
+  align-items: flex-start;
+  height: 40px;
+}
+
+.tileLogo img {
+  height: auto;
+  max-height: 40px;
+  width: auto;
+}
+
+/* Figma placeholder "LOGO DA INSERIRE": Geist Regular 20/32 navy */
+.tileName {
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--c-navy-900);
+}
+
+.tileText {
+  margin-top: 25px;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--c-ink-600);
+}
+
+.tileMore {
+  position: absolute;
+  left: 16px;
+  bottom: 24px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity var(--dur-ui) var(--ease-out),
+    transform var(--dur-ui) var(--ease-out);
+}
+
+/* Figma hover state (Spera tile): 2px navy outline + "Scopri" link */
+.tile:hover,
+.tile:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--c-navy-900);
+}
+
+.tile:hover .tileMore,
+.tile:focus-visible .tileMore {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 1279px) {
+  .tiles {
+    gap: 16px;
   }
 }

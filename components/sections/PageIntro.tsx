@@ -6,17 +6,23 @@ import styles from "./PageIntro.module.css";
 type Crumb = { label: string; href?: string };
 type Props = {
   breadcrumb: Crumb[];
-  eyebrow: string;
+  /** Small label above the title (omitted on product pages, where the logo is the title). */
+  eyebrow?: string;
   title: string;
+  /** Product pages: the logo is shown instead of the title text (which stays the accessible name). */
+  logo?: { src: string; width: number; height: number };
   subtitle?: string;
-  text: string;
+  /** Right column; omitted on Services (single-column intro). */
+  text?: string | string[];
   cta?: { label: string; href: string };
 };
 
-/** Inner-page intro (Figma "Pharma - Concept" 117:3461, y105–438): breadcrumb, h1 block, text + CTA. */
-export function PageIntro({ breadcrumb, eyebrow, title, subtitle, text, cta }: Props) {
+/** Inner-page intro (Figma Pharma 117:3461, Enabling 142:3690, Products 143:4468, Services 147:7262). */
+export function PageIntro({ breadcrumb, eyebrow, title, logo, subtitle, text, cta }: Props) {
+  const paragraphs = text === undefined ? [] : Array.isArray(text) ? text : [text];
+  const variant = logo ? styles.product : !paragraphs.length ? styles.solo : "";
   return (
-    <section className={`container ${styles.intro}`} aria-labelledby="page-title">
+    <section className={`container ${styles.intro} ${variant}`} aria-labelledby="page-title">
       <nav aria-label="Percorso" className={styles.crumbs}>
         <ol>
           {breadcrumb.map((c, i) => (
@@ -28,28 +34,43 @@ export function PageIntro({ breadcrumb, eyebrow, title, subtitle, text, cta }: P
       </nav>
       <div className={styles.grid}>
         <div className={styles.heading}>
-          <p className={styles.eyebrow} data-reveal="">
-            {eyebrow}
-          </p>
-          <SplitLines as="h1" id="page-title" className={styles.title}>
-            {title}
-          </SplitLines>
+          {eyebrow && (
+            <p className={styles.eyebrow} data-reveal="">
+              {eyebrow}
+            </p>
+          )}
+          {logo ? (
+            <h1 id="page-title" className={styles.logoTitle} data-reveal="">
+              {/* eslint-disable-next-line @next/next/no-img-element -- product logo SVG from Figma */}
+              <img src={logo.src} width={logo.width} height={logo.height} alt={title} />
+            </h1>
+          ) : (
+            <SplitLines as="h1" id="page-title" className={styles.title}>
+              {title}
+            </SplitLines>
+          )}
           {subtitle && (
             <p className={styles.subtitle} data-reveal="" style={{ "--d": "120ms" } as React.CSSProperties}>
               {subtitle}
             </p>
           )}
         </div>
-        <div className={styles.body} data-reveal="" style={{ "--d": "160ms" } as React.CSSProperties}>
-          <p>{text}</p>
-          {cta && (
-            <div>
-              <Button href={cta.href} variant="accent">
-                {cta.label}
-              </Button>
+        {paragraphs.length > 0 && (
+          <div className={styles.body} data-reveal="" style={{ "--d": "160ms" } as React.CSSProperties}>
+            <div className={styles.paragraphs}>
+              {paragraphs.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
             </div>
-          )}
-        </div>
+            {cta && (
+              <div>
+                <Button href={cta.href} variant="accent">
+                  {cta.label}
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );
