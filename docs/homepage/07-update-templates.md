@@ -64,3 +64,13 @@
   - No horizontal overflow on the 5 pages at 390.
   - axe 0 violations on 5 pages at 1440 and 390; motion suite green with CLS 0.
   - Desktop positions unchanged (±17px).
+
+## 2026-10-19 (mobile fixes, round 2)
+- **Bug**: on narrow windows the inner-page client-logo band (`ClientLogos compact`) stayed 120px tall while the logos
+  wrapped onto 3 rows, so the banner covered the last row (Pharma, reported by the client). The 120px height now
+  applies only ≥1024px.
+- Overlap audit (`overlap.mjs`, widths 360–1180, all 5 pages): no section content spills into the next, no
+  clipped text, no horizontal overflow.
+- Small screens:
+  - "Le funzionalità" keeps the row layout with a 112px thumbnail.
+  - Services cards and Enabling media use 4:3 instead of square.

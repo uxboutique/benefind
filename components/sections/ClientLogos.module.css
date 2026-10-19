@@ -7,8 +7,10 @@
   padding-inline: 48px;
 }
 
-.compact .list {
-  height: 120px;
+@media (min-width: 1024px) {
+  .compact .list {
+    height: 120px;
+  }
 }
 
 .item img {

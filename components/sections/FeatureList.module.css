@@ -77,14 +77,34 @@
   }
 }
 
+/* Small screens: keep the row (thumb + text) like Apple's feature lists, thumb scaled down */
 @media (max-width: 767px) {
+  .list {
+    gap: 32px;
+  }
+
   .item {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: 112px minmax(0, 1fr);
+    align-items: start;
+    gap: 16px;
   }
 
   .thumb {
     height: auto;
     aspect-ratio: 240 / 200;
+    border-radius: 8px;
+  }
+
+  .copy {
+    gap: 8px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .text {
+    font-size: 15px;
+    line-height: 1.5;
   }
 }

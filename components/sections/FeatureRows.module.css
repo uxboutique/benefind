@@ -90,4 +90,15 @@
     width: 100%;
     max-width: 640px;
   }
+
+  .media {
+    width: 100%;
+    max-width: 580px;
+  }
+}
+
+@media (max-width: 767px) {
+  .media {
+    aspect-ratio: 4 / 3;
+  }
 }
