@@ -136,10 +136,10 @@
   margin-top: 0.5px;
 }
 
+/* Figma: CTA at y391 = pinned 44px above the content bottom (in flow, so the slide transform can't move it) */
 .cta {
-  position: absolute;
-  left: 40px;
-  top: 391px;
+  margin-top: auto;
+  margin-bottom: 44px;
 }
 
 /* Photo 738 × 346 at x503 / y137 */
@@ -173,26 +173,35 @@
 }
 
 /* M11: the active slide's content settles in; neighbours stay quietly dimmed. */
-.left,
+/* The column itself never transforms (keeps the CTA fixed); its text and the photo settle in. */
+.left > :not(.cta),
 .right {
   transition:
     opacity 500ms var(--ease-out),
     transform 500ms var(--ease-out);
 }
 
-.slide:not([data-active]) .left,
+.slide:not([data-active]) .left > :not(.cta),
 .slide:not([data-active]) .right {
   opacity: 0.5;
   transform: translate3d(0, 12px, 0);
 }
 
+.cta {
+  transition: opacity 500ms var(--ease-out);
+}
+
+.slide:not([data-active]) .cta {
+  opacity: 0.5;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .left,
+  .left > :not(.cta),
   .right {
     transition: opacity 200ms linear;
   }
 
-  .slide:not([data-active]) .left,
+  .slide:not([data-active]) .left > :not(.cta),
   .slide:not([data-active]) .right {
     transform: none;
   }
@@ -222,7 +231,8 @@
   }
 
   .cta {
-    position: static;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   .right {
