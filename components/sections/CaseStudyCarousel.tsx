@@ -8,7 +8,9 @@ import { useCarousel } from "@/hooks/useCarousel";
 import styles from "./CaseStudyCarousel.module.css";
 
 type Slide = {
-  logo: { src: string; alt: string; width: number; height: number };
+  /** Client logo; without one the project name is set as text in its place. */
+  logo?: { src: string; alt: string; width: number; height: number };
+  name?: string;
   title: string;
   cta: { label: string; href: string };
   photo: { src: string; alt: string };
@@ -35,7 +37,11 @@ export function CaseStudyCarousel({ label, slides }: { label: string; slides: Sl
               <Image src={asset("/assets/images/markets-slide1-bg.png")} alt="" fill sizes="2416px" className={styles.bgImg} />
             </div>
             <div className={styles.left}>
-              <Image src={s.logo.src} alt={s.logo.alt} width={s.logo.width} height={s.logo.height} className={styles.logo} />
+              {s.logo ? (
+                <Image src={s.logo.src} alt={s.logo.alt} width={s.logo.width} height={s.logo.height} className={styles.logo} />
+              ) : (
+                <p className={styles.name}>{s.name}</p>
+              )}
               <h3 className={styles.title}>{s.title}</h3>
               <div>
                 <Button href={s.cta.href} variant="white">

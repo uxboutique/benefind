@@ -74,6 +74,13 @@
   margin-top: 1px;
 }
 
+.name {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
 .title {
   margin-top: 45px;
   font-family: var(--font-display);

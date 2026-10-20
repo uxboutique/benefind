@@ -51,6 +51,18 @@
   height: auto;
 }
 
+.name {
+  position: absolute;
+  left: 1.91%;
+  top: 2.58%;
+  padding-right: 12px;
+  background: #f6f6f6; /* covers the screenshot's own brand corner, like the logo */
+  color: var(--c-navy-900);
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.6vw, 22px);
+  line-height: 1.2;
+}
+
 @media (max-width: 767px) {
   .card {
     aspect-ratio: 4 / 3;

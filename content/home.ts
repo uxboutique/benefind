@@ -5,7 +5,7 @@
  */
 
 import { asset } from "@/lib/asset";
-import { routes } from "@/lib/routes";
+import { hrefFor, routes } from "@/lib/routes";
 
 export type Link = { label: string; href: string };
 
@@ -106,7 +106,7 @@ export const markets = {
       veil: 0.4,
       photo: { src: asset("/assets/images/market-manufacturing.jpg"), alt: "" },
       photoBox: { left: "0%", top: "-20%", width: "100%", height: "160%" },
-      cta: { label: "Scopri di più", href: "#" },
+      cta: { label: "Scopri di più", href: hrefFor("Manufacturing") },
     },
     {
       eyebrow: "Mercati e soluzioni digitali",
@@ -120,7 +120,7 @@ export const markets = {
       bgInset: "-34px -22px",
       photo: { src: asset("/assets/images/markets-slide1-portrait.jpg"), alt: "" },
       photoBox: { left: "-3.12%", top: "-9.83%", width: "104.61%", height: "145.09%" },
-      cta: { label: "Scopri di più", href: routes.pharma },
+      cta: { label: "Scopri di più", href: hrefFor("Pharma") },
     },
     {
       eyebrow: "Mercati e soluzioni digitali",
@@ -132,7 +132,7 @@ export const markets = {
       veil: 0.25,
       photo: { src: asset("/assets/images/market-transportation.jpg"), alt: "" },
       photoBox: { left: "0%", top: "-30%", width: "100%", height: "160%" },
-      cta: { label: "Scopri di più", href: "#" },
+      cta: { label: "Scopri di più", href: hrefFor("Transportation") },
     },
     {
       eyebrow: "Mercati e soluzioni digitali",
@@ -144,7 +144,7 @@ export const markets = {
       veil: 0.6,
       photo: { src: asset("/assets/images/market-fashion.jpg"), alt: "" },
       photoBox: { left: "0%", top: "-25%", width: "100%", height: "160%" },
-      cta: { label: "Scopri di più", href: "#" },
+      cta: { label: "Scopri di più", href: hrefFor("Fashion & Luxury") },
     },
     {
       eyebrow: "Mercati e soluzioni digitali",
@@ -156,7 +156,7 @@ export const markets = {
       veil: 0.5,
       photo: { src: asset("/assets/images/case-healthcare-photo.jpg"), alt: "" },
       photoBox: { left: "0%", top: "0%", width: "100%", height: "100%" },
-      cta: { label: "Scopri di più", href: routes.spera },
+      cta: { label: "Scopri di più", href: hrefFor("Healthcare") },
     },
     {
       eyebrow: "Mercati e soluzioni digitali",
@@ -168,7 +168,7 @@ export const markets = {
       veil: 0.35,
       photo: { src: asset("/assets/images/case-public-admin-photo.jpg"), alt: "" },
       photoBox: { left: "0%", top: "0%", width: "100%", height: "100%" },
-      cta: { label: "Scopri di più", href: "#" },
+      cta: { label: "Scopri di più", href: hrefFor("Public Administration") },
     },
     {
       eyebrow: "Mercati e soluzioni digitali",
@@ -180,7 +180,7 @@ export const markets = {
       bgFilter: "hue-rotate(38deg)",
       photo: { src: asset("/assets/images/case-financial-photo.jpg"), alt: "" },
       photoBox: { left: "0%", top: "0%", width: "100%", height: "100%" },
-      cta: { label: "Scopri di più", href: "#" },
+      cta: { label: "Scopri di più", href: hrefFor("Financial Services") },
     },
   ] as MarketSlide[],
 };
@@ -242,7 +242,7 @@ export const technologies = {
       title: "Integration Platforms e Intelligenza Artificiale",
       text: "Piattaforme low/no-code, AI, AR/VR e blockchain per ottimizzare processi ed efficienza.",
       image: asset("/assets/images/enabling-barn.jpg"),
-      cta: { label: "Scopri", href: "#" },
+      cta: { label: "Scopri", href: hrefFor("Integration Platforms") },
     },
     {
       theme: "light" as const,
@@ -250,7 +250,7 @@ export const technologies = {
       title: "Documenti, sicurezza, automazione",
       text: "BPM / Document Management, CyberSecurity e hyperautomation per una trasformazione digitale completa.",
       image: asset("/assets/images/tech-security.png"),
-      cta: { label: "Scopri", href: "#" },
+      cta: { label: "Scopri", href: hrefFor("BPM") },
     },
     {
       // Figma card 3 duplicates card 1's text (placeholder).
@@ -259,7 +259,7 @@ export const technologies = {
       title: "Integration Platforms e Intelligenza Artificiale",
       text: "Piattaforme low/no-code, AI, AR/VR e blockchain per ottimizzare processi ed efficienza.",
       image: asset("/assets/images/case-public-admin.png"),
-      cta: { label: "Scopri", href: "#" },
+      cta: { label: "Scopri", href: hrefFor("Artificial Intelligence") },
     },
   ],
 };

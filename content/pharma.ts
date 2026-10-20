@@ -3,6 +3,7 @@
  * Placeholders kept as designed ("Lorem ipsum", "Primary CTA", duplicated card copy) are listed in the report.
  */
 import { asset } from "@/lib/asset";
+import { hrefFor } from "@/lib/routes";
 
 export const pharma = {
   breadcrumb: [
@@ -54,7 +55,7 @@ export const pharma = {
     ].map((c) => ({
       ...c,
       text: "Benefind supporta le aziende manifatturiere nell’evoluzione 4.0, automatizzando i processi con soluzioni digitali sostenibili.",
-      href: "#",
+      href: hrefFor(c.title),
     })),
     fallbackImage: asset("/assets/images/enabling-barn.jpg"),
   },

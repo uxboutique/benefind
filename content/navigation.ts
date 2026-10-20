@@ -106,11 +106,11 @@ export const primaryNav: NavItem[] = [
     shift: 0,
     products: [
       { name: "Spera", logo: { src: asset("/assets/logos/products/spera.svg"), width: 116, height: 33 }, text: "Gestione delle sperimentazioni", href: routes.spera },
-      { name: "URP", logo: { src: asset("/assets/logos/products/urp.svg"), width: 94, height: 38 }, text: "Gestione delle segnalazioni dei cittadini", href: "#" },
-      { name: "Gestione Documentale", logo: { src: asset("/assets/logos/products/gestione-documentale.svg"), width: 145, height: 39 }, text: "Gestione workflow management aziendale", href: "#" },
-      { name: "Comet", logo: { src: asset("/assets/logos/products/comet.svg"), width: 160, height: 40 }, text: "Fascicolatore AI ottimizza la gestione documentale", href: "#" },
+      { name: "URP", logo: { src: asset("/assets/logos/products/urp.svg"), width: 94, height: 38 }, text: "Gestione delle segnalazioni dei cittadini", href: hrefFor("URP") },
+      { name: "Gestione Documentale", logo: { src: asset("/assets/logos/products/gestione-documentale.svg"), width: 145, height: 39 }, text: "Gestione workflow management aziendale", href: hrefFor("Gestione Documentale") },
+      { name: "Comet", logo: { src: asset("/assets/logos/products/comet.svg"), width: 160, height: 40 }, text: "Fascicolatore AI ottimizza la gestione documentale", href: hrefFor("Comet") },
       // Figma: "LOGO DA INSERIRE" + duplicated copy (placeholder) — remaining products from the footer list.
-      ...["Aeva", "AllinApp", "LegalHUB", "REadvice"].map((name) => ({ name, logo: null, text: "Fascicolatore AI ottimizza la gestione documentale", href: "#" })),
+      ...["Aeva", "AllinApp", "LegalHUB", "REadvice"].map((name) => ({ name, logo: null, text: "Fascicolatore AI ottimizza la gestione documentale", href: hrefFor(name) })),
     ],
   },
 ];

@@ -6,6 +6,7 @@
 import { asset } from "@/lib/asset";
 import { wideCard } from "@/lib/media";
 import { pharma } from "@/content/pharma";
+import { hrefFor } from "@/lib/routes";
 
 const cardText =
   "Guidati da esigenze di revisione di processi organizzativi (riduzione dei costi e/o dei rischi, innovazione dei processi e/o dei prodotti/servizi) o di ammodernamento";
@@ -37,7 +38,7 @@ export const itConsulting = {
       { title: "Digital Consulting", ...photo(1) },
       { title: "Software Factory", ...photo(2) },
       { title: "Application Management/BPO", photo: null, photoBox: null },
-    ].map((c) => ({ ...c, href: "#" })),
+    ].map((c) => ({ ...c, href: hrefFor(c.title) })),
     fallbackImage: asset("/assets/images/product-card-barn.jpg"),
   },
 };
