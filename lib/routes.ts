@@ -5,6 +5,8 @@ export const routes = {
   integrationPlatforms: "/enabling-technologies/integration-platforms/",
   spera: "/products/spera/",
   itConsulting: "/services/information-technology-consulting/",
+  careers: "/careers/",
+  gruppo: "/gruppo-benefind/",
 } as const;
 
 const byLabel: Record<string, string> = {
@@ -13,6 +15,9 @@ const byLabel: Record<string, string> = {
   Spera: routes.spera,
   "Technology Consulting": routes.itConsulting,
   "Information Technology Consulting": routes.itConsulting,
+  Careers: routes.careers,
+  "Gruppo Benefind": routes.gruppo,
+  "Chi siamo": routes.gruppo,
 };
 
 export const hrefFor = (label: string) => byLabel[label] ?? "#";

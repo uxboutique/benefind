@@ -36,9 +36,10 @@ export function Markets() {
               data-active={i === active ? "" : undefined}
               inert={i !== active ? true : undefined}
             >
-              <div className={styles.bg} style={{ inset: s.bgInset }} aria-hidden="true">
+              <div className={styles.bg} style={{ inset: s.bgInset, filter: s.bgFilter }} aria-hidden="true">
                 <Image src={s.bg} alt="" fill sizes="(min-width: 1280px) 1324px, 100vw" className={styles.bgImg} />
               </div>
+              {s.veil ? <div className={styles.veil} style={{ opacity: s.veil }} aria-hidden="true" /> : null}
               <div className={styles.left}>
                 <p className={styles.eyebrow}>{s.eyebrow}</p>
                 <h3 className={styles.title}>

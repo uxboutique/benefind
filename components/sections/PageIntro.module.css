@@ -117,6 +117,20 @@
   font-size: 16px;
 }
 
+/* Gruppo (Figma 169:3328): copy 407 wide at x953, 5px below the title top */
+.aside .grid {
+  grid-template-columns: minmax(0, 617px) minmax(0, 407px);
+}
+
+.aside .title {
+  margin-top: 0;
+}
+
+.aside .body {
+  padding-top: 5px;
+  font-size: 16px;
+}
+
 /* Services (Figma 147:7262): single column, title up to 832, subtitle 16 below */
 .solo .grid {
   grid-template-columns: minmax(0, 832px);
@@ -151,7 +165,9 @@
 }
 
 @media (max-width: 1023px) {
-  .grid {
+  .grid,
+  .aside .grid,
+  .solo .grid {
     grid-template-columns: 1fr;
     margin-top: 32px;
   }

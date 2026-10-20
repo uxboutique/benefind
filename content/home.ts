@@ -63,6 +63,22 @@ export const enablingBanner = {
   cta: { label: "Primary CTA", href: "#" },
 };
 
+export type MarketSlide = {
+  eyebrow: string;
+  title: string;
+  titleLines?: string[];
+  bullets: string[];
+  bg: string;
+  bgInset: string;
+  /** CSS filter used to re-tint the luminous field. */
+  bgFilter?: string;
+  /** Opacity of a dark navy veil over lighter fields (white-text contrast). */
+  veil?: number;
+  photo: { src: string; alt: string };
+  photoBox: { left: string; top: string; width: string; height: string };
+  cta: { label: string; href: string };
+};
+
 export const markets = {
   eyebrow: "Mercati e soluzioni digitali",
   title: "Soluzioni innovative per mercati in evoluzione",
@@ -71,41 +87,102 @@ export const markets = {
     "Benefind opera nei principali settori di mercato, offrendo soluzioni tecnologiche avanzate e servizi su misura per la trasformazione digitale.",
     "Dall'Industria Manifatturiera all'Industria Farmaceutica, dal Fashion & Luxury ai Concessionari Autostradali, fino alla Sanità, Pubblica Amministrazione e Financial Services, supportiamo le aziende nell’ottimizzazione dei processi e nell’integrazione di tecnologie innovative.",
   ],
-  // Figma 97:4865 (updated 2026-10-19): two slides, check-list on the left, photo on the right.
+  // Figma 97:4865: slide layout (check-list left, photo right). One slide per market in the menu, each with
+  // its own background: the Figma luminous fields, re-tinted (hue-rotate) where a new colour was needed, plus a
+  // dark veil on the lighter fields to keep white text ≥ 4.5:1. Copy for markets other than Pharma is drafted
+  // from the site's own descriptions (see docs/homepage/08) — to be confirmed by the client.
   slides: [
+    {
+      eyebrow: "Mercati e soluzioni digitali",
+      title: "Manufacturing",
+      bullets: [
+        "Evoluzione 4.0 e automazione dei processi produttivi",
+        "Sistemi MES integrati con i sistemi esistenti",
+        "Soluzioni digitali sostenibili per la fabbrica",
+      ],
+      bg: asset("/assets/images/services-cocoa-satin.png"),
+      bgInset: "-34px -22px",
+      bgFilter: "brightness(0.6)",
+      veil: 0.4,
+      photo: { src: asset("/assets/images/market-manufacturing.jpg"), alt: "" },
+      photoBox: { left: "0%", top: "-20%", width: "100%", height: "160%" },
+      cta: { label: "Scopri di più", href: "#" },
+    },
     {
       eyebrow: "Mercati e soluzioni digitali",
       title: "Pharma",
       bullets: [
         "Processi MES avanzati per garantire soluzioni integrate ai sistemi esistenti",
-        // Repeated three times in Figma (placeholder copy).
-        "Sistema MES - Manufacturing Execution System.",
-        "Sistema MES - Manufacturing Execution System.",
-        "Sistema MES - Manufacturing Execution System.",
+        "Conformità normativa ed elaborazione batch/per lotti",
+        "Integrazione con i sistemi di laboratorio e controlli di qualità",
       ],
       bg: asset("/assets/images/markets-slide1-bg.png"),
-      // Figma: 1324×588 at −22/−34
       bgInset: "-34px -22px",
-      // Figma 98:4884 covers the older building photo in this slide.
       photo: { src: asset("/assets/images/markets-slide1-portrait.jpg"), alt: "" },
-      // Figma: 772×502 image box at −23/−34 inside the 738×346 frame.
       photoBox: { left: "-3.12%", top: "-9.83%", width: "104.61%", height: "145.09%" },
-      cta: { label: "Primary CTA", href: routes.pharma },
+      cta: { label: "Scopri di più", href: routes.pharma },
     },
     {
       eyebrow: "Mercati e soluzioni digitali",
-      title: "Artificial Intelligence",
-      titleLines: ["Artificial", "Intelligence"],
-      bullets: ["Processi MES avanzati per garantire soluzioni integrate ai sistemi esistenti", "Sistema MES - Manufacturing Execution System."],
-      bg: asset("/assets/images/markets-slide2-bg.png"),
-      // Figma: 1324×588 at −36/−36
-      bgInset: "-36px -8px -32px -36px",
-      photo: { src: asset("/assets/images/markets-slide2-photo.png"), alt: "" },
-      photoBox: { left: "-7.45%", top: "-56.36%", width: "111.92%", height: "196.82%" },
-      // AI lives under Enabling Technologies; Integration Platforms is the only designed page there.
-      cta: { label: "Primary CTA", href: routes.integrationPlatforms },
+      title: "Transportation",
+      bullets: ["Soluzioni per i Concessionari Autostradali", "Integrazione di servizi software esistenti", "Ottimizzazione dei processi operativi"],
+      bg: asset("/assets/images/markets-slide1-bg.png"),
+      bgInset: "-34px -22px",
+      bgFilter: "hue-rotate(-62deg) saturate(1.1)",
+      veil: 0.25,
+      photo: { src: asset("/assets/images/market-transportation.jpg"), alt: "" },
+      photoBox: { left: "0%", top: "-30%", width: "100%", height: "160%" },
+      cta: { label: "Scopri di più", href: "#" },
     },
-  ],
+    {
+      eyebrow: "Mercati e soluzioni digitali",
+      title: "Fashion & Luxury",
+      titleLines: ["Fashion", "& Luxury"],
+      bullets: ["Workflow management e gestione documentale", "Processi digitali integrati lungo la filiera", "Esperienze digitali per brand e clienti"],
+      bg: asset("/assets/images/luminous-red.jpg"),
+      bgInset: "-34px -22px",
+      veil: 0.6,
+      photo: { src: asset("/assets/images/market-fashion.jpg"), alt: "" },
+      photoBox: { left: "0%", top: "-25%", width: "100%", height: "160%" },
+      cta: { label: "Scopri di più", href: "#" },
+    },
+    {
+      eyebrow: "Mercati e soluzioni digitali",
+      title: "Healthcare",
+      bullets: ["Gestione delle sperimentazioni cliniche con SPERA", "Dematerializzazione di documenti e flussi informativi", "Conformità alla normativa nazionale ed europea"],
+      bg: asset("/assets/images/luminous-green.jpg"),
+      bgInset: "-34px -22px",
+      bgFilter: "brightness(0.8)",
+      veil: 0.5,
+      photo: { src: asset("/assets/images/case-healthcare-photo.jpg"), alt: "" },
+      photoBox: { left: "0%", top: "0%", width: "100%", height: "100%" },
+      cta: { label: "Scopri di più", href: routes.spera },
+    },
+    {
+      eyebrow: "Mercati e soluzioni digitali",
+      title: "Public Administration",
+      titleLines: ["Public", "Administration"],
+      bullets: ["Gestione delle segnalazioni dei cittadini (URP)", "Protocollo e gestione documentale"],
+      bg: asset("/assets/images/markets-slide2-bg.png"),
+      bgInset: "-36px -8px -32px -36px",
+      veil: 0.35,
+      photo: { src: asset("/assets/images/case-public-admin-photo.jpg"), alt: "" },
+      photoBox: { left: "0%", top: "0%", width: "100%", height: "100%" },
+      cta: { label: "Scopri di più", href: "#" },
+    },
+    {
+      eyebrow: "Mercati e soluzioni digitali",
+      title: "Financial Services",
+      titleLines: ["Financial", "Services"],
+      bullets: ["Piattaforme di integrazione low/no code", "Cybersecurity e controllo degli accessi", "Intelligenza Artificiale per i processi"],
+      bg: asset("/assets/images/markets-slide1-bg.png"),
+      bgInset: "-34px -22px",
+      bgFilter: "hue-rotate(38deg)",
+      photo: { src: asset("/assets/images/case-financial-photo.jpg"), alt: "" },
+      photoBox: { left: "0%", top: "0%", width: "100%", height: "100%" },
+      cta: { label: "Scopri di più", href: "#" },
+    },
+  ] as MarketSlide[],
 };
 
 export const services = {
@@ -144,7 +221,7 @@ export const caseStudies = {
 export const careers = {
   eyebrow: "Careers",
   title: "L’innovazione la fanno le persone",
-  cta: { label: "Lavora con noi", href: "#" },
+  cta: { label: "Lavora con noi", href: routes.careers },
   story: {
     tag: "Storie dal gruppo",
     titleLines: ["Incontra", "[Nome],", "[Ruolo]"],

@@ -296,9 +296,9 @@ export function Header() {
           <ul className={styles.utilList}>
             {utilityMenu.links.map((l, i) => (
               <li key={l.label} style={{ "--i": i } as React.CSSProperties}>
-                <a href={l.href} onClick={() => setUtil(false)}>
+                <Link href={l.href} onClick={() => setUtil(false)}>
                   {l.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -357,9 +357,9 @@ export function Header() {
           <ul className={styles.panelUtil}>
             {utilityMenu.links.map((l) => (
               <li key={l.label}>
-                <a href={l.href} onClick={() => close(false)}>
+                <Link href={l.href} onClick={() => close(false)}>
                   {l.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

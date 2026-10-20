@@ -48,9 +48,37 @@
 }
 
 .text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   font-size: 16px;
   line-height: 24px;
   color: var(--c-ink-600);
+}
+
+/* Lucide circle-check 20 + gap 11, Regular 16/21, rows 16 apart */
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 16px;
+  line-height: 21px;
+  color: var(--c-ink-600);
+}
+
+.bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.bullets img {
+  flex: none;
+  margin-top: 0.5px;
+}
+
+.photo {
+  object-fit: cover;
 }
 
 .media {

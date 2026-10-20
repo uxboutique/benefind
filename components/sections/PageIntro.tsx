@@ -15,12 +15,14 @@ type Props = {
   /** Right column; omitted on Services (single-column intro). */
   text?: string | string[];
   cta?: { label: string; href: string };
+  /** Gruppo (Figma 169:3328): title left, short copy in a 407 column at x953. */
+  aside?: boolean;
 };
 
 /** Inner-page intro (Figma Pharma 117:3461, Enabling 142:3690, Products 143:4468, Services 147:7262). */
-export function PageIntro({ breadcrumb, eyebrow, title, logo, subtitle, text, cta }: Props) {
+export function PageIntro({ breadcrumb, eyebrow, title, logo, subtitle, text, cta, aside = false }: Props) {
   const paragraphs = text === undefined ? [] : Array.isArray(text) ? text : [text];
-  const variant = logo ? styles.product : !paragraphs.length ? styles.solo : "";
+  const variant = logo ? styles.product : !paragraphs.length ? styles.solo : aside ? styles.aside : "";
   return (
     <section className={`container ${styles.intro} ${variant}`} aria-labelledby="page-title">
       <nav aria-label="Percorso" className={styles.crumbs}>

@@ -87,6 +87,14 @@
   object-fit: cover;
 }
 
+/* Dark navy veil, strongest behind the copy column */
+.veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, #07063f 0%, rgba(7, 6, 63, 0.75) 45%, rgba(7, 6, 63, 0.35) 100%);
+}
+
 /* Figma 142:3545: 405 wide, gap 24; CTA at y391; 1px divider at x463 */
 .left {
   display: flex;
@@ -243,6 +251,11 @@
   .photo {
     flex: none;
     aspect-ratio: 738 / 346;
+  }
+
+  /* stacked: copy runs full width on top, so the veil darkens top → bottom instead of left → right */
+  .veil {
+    background: linear-gradient(180deg, #07063f 0%, rgba(7, 6, 63, 0.8) 60%, rgba(7, 6, 63, 0.4) 100%);
   }
 }
 

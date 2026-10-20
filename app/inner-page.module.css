@@ -12,6 +12,24 @@
   margin-top: 48px;
 }
 
+/* Gruppo: intro copy → banner 44, banner → logos 44, logos → statement 87 */
+.afterIntroTight {
+  margin-top: 44px;
+}
+
+.logos {
+  margin-top: 44px;
+}
+
+.statement {
+  padding-top: 87px;
+}
+
+/* Contact headline 160 below a banner (Contact has 131 top padding) */
+.contactAfterBanner {
+  margin-top: 29px;
+}
+
 /* standard gap between blocks: 80 */
 .block {
   padding-top: 80px;
@@ -101,7 +119,17 @@
   }
 
   .contact,
-  .contactTight {
+  .contactTight,
+  .contactAfterBanner {
     margin-top: 0;
+  }
+
+  .afterIntroTight,
+  .logos {
+    margin-top: 32px;
+  }
+
+  .statement {
+    padding-top: var(--space-section);
   }
 }

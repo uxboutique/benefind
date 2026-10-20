@@ -4,7 +4,7 @@ import styles from "./SectionHeading.module.css";
 
 type Props = {
   id?: string;
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   /** Authored line breaks (Figma forces them in a few headings). */
   lines?: string[];
@@ -17,9 +17,11 @@ type Props = {
 export function SectionHeading({ id, eyebrow, title, lines, tone = "light", className, children }: Props) {
   return (
     <div className={[styles.heading, tone === "dark" && styles.dark, className].filter(Boolean).join(" ")}>
-      <p className={styles.eyebrow} data-reveal="">
-        {eyebrow}
-      </p>
+      {eyebrow && (
+        <p className={styles.eyebrow} data-reveal="">
+          {eyebrow}
+        </p>
+      )}
       <SplitLines as="h2" id={id} className={styles.title} lines={lines}>
         {title}
       </SplitLines>

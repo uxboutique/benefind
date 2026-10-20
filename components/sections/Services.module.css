@@ -63,6 +63,50 @@
   margin-top: 102px;
 }
 
+/* ---- Gruppo variant (Figma 169:3568): light field bg, 4 stats spread over the full 1280 ---- */
+.field {
+  margin-top: 0; /* the page block already provides the 80 gap */
+  background: var(--c-navy-950);
+}
+
+/* the cocoa band's black veil would turn the light field almost black */
+.field .bg::after {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .field .inner {
+    padding-bottom: 108px;
+  }
+}
+
+/* Figma "Velatura": 917 tall over the 675 band (starts at −26) */
+.fieldVeil {
+  position: absolute;
+  inset: -26px 0 auto;
+  height: 136%;
+  background: linear-gradient(180deg, rgba(7, 6, 63, 0) 0%, rgba(7, 6, 63, 0) 30%, rgba(7, 6, 63, 0.3) 44.5%, rgba(7, 6, 63, 0.85) 100%);
+}
+
+.field .statsWrap {
+  margin-top: 85px;
+}
+
+.field .stats {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 45px 56px;
+}
+
+.field .stat + .stat {
+  padding-left: 0;
+}
+
+.field .stat + .stat::before {
+  display: none;
+}
+
 /* Figma: 1113 × 123 glass panel, centred; columns at 32 / 433 / 835 with dividers 16px before */
 .stats {
   display: grid;
@@ -123,12 +167,16 @@
     gap: 28px;
   }
 
-  .statsWrap {
+  .statsWrap,
+  .field .statsWrap {
     margin-top: 56px;
   }
 
-  .stats {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .stats,
+  .field .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px 0;
     padding: 20px 24px;
   }
 }
@@ -138,8 +186,10 @@
     padding-block: 56px;
   }
 
-  .stats {
+  .stats,
+  .field .stats {
     grid-template-columns: 1fr;
+    gap: 0;
     padding: 8px 20px;
   }
 

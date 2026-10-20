@@ -5,7 +5,8 @@ const base = process.argv[2] ?? "http://localhost:3000";
 const SELECTORS = [
   "#hero-title", "[data-hero-cta] a",
   "#enabling-title", "section:has(#enabling-title) p",
-  "#mercati [data-active] h3", "#mercati [data-active] p",
+  // every Markets slide (each has its own background): "@n" = advance the carousel to slide n first
+  ...[0, 1, 2, 3, 4, 5, 6].flatMap((n) => [`@${n} #mercati [data-active] h3`, `@${n} #mercati [data-active] li`, `@${n} #mercati [data-active] p`]),
   "#servizi-title", "#servizi p", "#servizi dd", "#servizi dt",
   "#careers-title", "section:has(#careers-title) p:first-child",
   "#tecnologie [aria-roledescription=slide]:nth-child(1) h3", "#tecnologie [aria-roledescription=slide]:nth-child(1) p",
@@ -18,7 +19,19 @@ for (const width of [1440, 390]) {
   const page = await browser.newPage({ viewport: { width, height: 900 }, reducedMotion: "reduce" });
   await page.goto(base, { waitUntil: "networkidle" });
   console.log(`\n=== ${width}px`);
-  for (const sel of SELECTORS) {
+  for (const entry of SELECTORS) {
+    const slide = entry.match(/^@(\d+) /);
+    const sel = slide ? entry.slice(slide[0].length) : entry;
+    if (slide) {
+      const want = +slide[1];
+      await page.locator("#mercati").scrollIntoViewIfNeeded();
+      for (let k = 0; k < 8; k++) {
+        const cur = await page.evaluate(() => [...document.querySelectorAll("#mercati [aria-roledescription=slide]")].findIndex((n) => n.hasAttribute("data-active")));
+        if (cur === want) break;
+        await page.locator(`#mercati [aria-label=${cur < want ? "Successivo" : "Precedente"}]`).click();
+        await page.waitForTimeout(900);
+      }
+    }
     const el = page.locator(sel).first();
     if (!(await el.count())) { console.log(sel, "not found"); continue; }
     await el.scrollIntoViewIfNeeded(); await page.waitForTimeout(250);
@@ -42,7 +55,7 @@ for (const width of [1440, 390]) {
     const rs = px.map((bg) => ratio(fg.slice(0, 3).map((c, i) => c * a + bg[i] * (1 - a)), bg)).sort((p, q) => p - q);
     const large = info.size >= 24 || (info.size >= 18.66 && info.weight >= 700);
     const need = large ? 3 : 4.5; const p5 = rs[Math.floor(rs.length * 0.05)], med = rs[Math.floor(rs.length / 2)];
-    console.log(`${p5 >= need ? "PASS" : "FAIL"} ${sel.padEnd(58)} ${info.size}px need ${need}: worst5% ${p5.toFixed(2)} median ${med.toFixed(2)}`);
+    console.log(`${p5 >= need ? "PASS" : "FAIL"} ${entry.padEnd(58)} ${info.size}px need ${need}: worst5% ${p5.toFixed(2)} median ${med.toFixed(2)}`);
   }
   await page.close();
 }

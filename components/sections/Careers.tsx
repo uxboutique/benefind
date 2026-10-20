@@ -2,13 +2,23 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { LightField } from "@/components/ui/LightField";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { careers } from "@/content/home";
+import { careers as homeCareers } from "@/content/home";
 import styles from "./Careers.module.css";
 
-export function Careers() {
+type Link = { label: string; href: string };
+type CareersContent = {
+  eyebrow: string;
+  title: string;
+  cta: Link;
+  story: { tag: string; titleLines: string[]; quote: string; photo: { src: string; alt: string }; cta: Link };
+};
+
+/** Dark "Careers" band with the people story card (Home 97:3258, Careers 165:8710). */
+export function Careers({ content = homeCareers, flush = false }: { content?: CareersContent; flush?: boolean }) {
+  const careers = content;
   const { story } = careers;
   return (
-    <section className={styles.section} aria-labelledby="careers-title" data-theme="dark">
+    <section className={`${styles.section} ${flush ? styles.flush : ""}`} aria-labelledby="careers-title" data-theme="dark">
       <div className={styles.visual}>
         <LightField variant="careers" />
       </div>

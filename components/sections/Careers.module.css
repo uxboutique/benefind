@@ -7,6 +7,10 @@
   color: var(--c-white);
 }
 
+.flush {
+  margin-top: 0;
+}
+
 .visual {
   position: absolute;
   inset: 0;

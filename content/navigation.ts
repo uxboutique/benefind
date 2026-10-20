@@ -119,8 +119,8 @@ export const primaryNav: NavItem[] = [
 export const utilityMenu = {
   title: "Menu",
   links: [
-    { label: "Gruppo Benefind", href: "#" },
-    { label: "Careers", href: "#" },
+    { label: "Gruppo Benefind", href: routes.gruppo },
+    { label: "Careers", href: routes.careers },
     { label: "Innovation", href: "#" },
   ],
   language: { label: "English", href: "#", lang: "en" },

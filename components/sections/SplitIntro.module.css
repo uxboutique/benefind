@@ -26,7 +26,18 @@
   font-weight: 300;
 }
 
+/* Statement (Figma Gruppo 169:3537): 617 heading / 407 copy at x953, copy 16/24 */
+.statement {
+  grid-template-columns: minmax(0, 617px) minmax(0, 407px);
+}
+
+.statement .body {
+  padding-top: 0;
+  font-size: 16px;
+}
+
 @media (max-width: 1023px) {
+  .statement,
   .intro,
   .wide {
     grid-template-columns: 1fr;
