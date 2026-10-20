@@ -7,6 +7,10 @@ export const routes = {
   itConsulting: "/services/information-technology-consulting/",
   careers: "/careers/",
   gruppo: "/gruppo-benefind/",
+  certificazioni: "/certificazioni/",
+  codiceEtico: "/codice-etico/",
+  privacy: "/privacy-policy/",
+  cookie: "/cookie-policy/",
 } as const;
 
 const byLabel: Record<string, string> = {
@@ -18,6 +22,10 @@ const byLabel: Record<string, string> = {
   Careers: routes.careers,
   "Gruppo Benefind": routes.gruppo,
   "Chi siamo": routes.gruppo,
+  Certificazioni: routes.certificazioni,
+  "Codice etico": routes.codiceEtico,
+  "Privacy Policy": routes.privacy,
+  "Cookie Policy": routes.cookie,
 };
 
 export const hrefFor = (label: string) => byLabel[label] ?? "#";

@@ -100,3 +100,20 @@ Solo **Chromium** è disponibile in questo ambiente, con emulazione 1440 / 390 /
 - Foto Gruppo (città, team, candidatura): disponibili solo a 1000px, servono originali in alta risoluzione.
 - Testi lorem ipsum di Gruppo e citazione/nome nella card storia Careers: placeholder come da Figma.
 - Le 4 posizioni aperte sono identiche, come in Figma: servono i ruoli reali.
+
+## Pagine istituzionali (Certificazioni, Codice etico, Privacy, Cookie)
+
+- **Template:** nuovo `LegalPage`, minimale.
+  - Intro standard con breadcrumb.
+  - Testo su una colonna di lettura da 720px.
+  - Titoletti serif separati da filetti.
+  - Tabelle cookie che su mobile diventano righe etichetta/valore.
+- **URL:** `/certificazioni/`, `/codice-etico/`, `/privacy-policy/`, `/cookie-policy/`, collegati dal footer.
+- **Contenuti:** testi e immagini copiati da benefind.it.
+  - Loghi IMQ/IQNet e Accredia.
+  - PDF del Codice etico in `public/assets/docs/`.
+- **Da verificare con il cliente:**
+  - La privacy indica la sede in "Via Pratese, n. 201", mentre il footer riporta il 199. Il testo è stato lasciato com'è.
+  - La cookie policy descrive il sito attuale (Google Analytics, banner cookie, cookie `cc_cookie_accept` e `pll_language`). Il nuovo sito statico oggi non imposta cookie e non usa Analytics: il testo va aggiornato prima del go-live definitivo.
+  - Il pulsante "Modifica le preferenze sui cookie" è stato omesso: non c'è ancora un banner.
+  - Le istruzioni sui browser (Internet Explorer, Opera) sono datate.

@@ -25,8 +25,9 @@ export function Button({ href, variant = "accent", size = "m", className, childr
       <img className={styles.icon} src={asset(`/assets/icons/${icon}`)} width={20} height={20} alt="" aria-hidden="true" />
     </>
   );
-  // Internal routes ("/…") go through next/link so the deploy basePath is applied.
-  return href.startsWith("/") ? (
+  // Internal routes ("/…") go through next/link so the deploy basePath is applied; downloads
+  // (already prefixed with asset()) stay plain anchors.
+  return href.startsWith("/") && !rest.download ? (
     <Link href={href} className={cls} {...rest}>
       {inner}
     </Link>
